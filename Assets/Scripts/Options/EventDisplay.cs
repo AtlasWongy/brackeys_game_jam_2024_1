@@ -4,23 +4,29 @@ using System.Collections.Generic;
 using Options;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EventDisplay : MonoBehaviour
 {
     public OptionEvent optionEvent;
 
-    public GameObject eventNameObj;
-    public GameObject eventDescObj;
+    public Button eventButton;
     
-    private TextMeshProUGUI _eventName;
-    private TextMeshProUGUI _eventDesc;
+    private TextMeshProUGUI[] _event;
 
     private void Start()
     {
-        _eventName = eventNameObj.GetComponent<TextMeshProUGUI>();
-        _eventDesc = eventDescObj.GetComponent<TextMeshProUGUI>();
+        _event = eventButton.GetComponentsInChildren<TextMeshProUGUI>();
 
-        _eventName.text = optionEvent.optionName;
-        _eventDesc.text = optionEvent.description;
+        _event[0].text = optionEvent.optionName;
+        _event[1].text = optionEvent.description;
+
+        // Subscribe to the button's onClick event
+        eventButton.onClick.AddListener(OnClick);
+    }
+
+    private void OnClick()
+    {
+        optionEvent.InvokeEvent();
     }
 }
