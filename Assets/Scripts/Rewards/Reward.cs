@@ -17,6 +17,9 @@ namespace Rewards
 
         [Inspectable]
         public string item;
+
+        [Inspectable]
+        public string description;
     }
 }
 

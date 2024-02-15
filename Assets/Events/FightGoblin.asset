@@ -19,7 +19,4 @@ MonoBehaviour:
   wits: 0
   guts: 1
   heart: -1
-  rewards:
-  - rewardType: gold
-    gold: 1
-    item: none
+  rewardList: {fileID: 11400000, guid: fa4755f50115bbe4f98030b6e4770e93, type: 2}

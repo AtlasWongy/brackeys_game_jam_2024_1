@@ -16,7 +16,7 @@ namespace Options
         public int guts;
         public int heart;
 
-        public Reward[] rewards;
+        public RewardList rewardList;
 
         public void InvokeEvent()
         {
@@ -47,7 +47,7 @@ namespace Options
             int totalGold = 0;
 
             // Iterate over the rewards list
-            foreach (Reward reward in rewards)
+            foreach (Reward reward in rewardList.rewards)
             {
                 // If the type is "item", append the name
                 if (reward.rewardType == "item")
