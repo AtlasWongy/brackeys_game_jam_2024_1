@@ -1,6 +1,5 @@
-using System.Collections;
-using System.Collections.Generic;
 using Rewards;
+using System;
 using UnityEngine;
 
 namespace Options
@@ -17,11 +16,11 @@ namespace Options
         public int guts;
         public int heart;
 
-        public Reward[] Reward;
+        public Reward[] rewards;
 
         public void InvokeEvent()
         {
-            int diceResult = Random.Range(1, 11);
+            int diceResult = UnityEngine.Random.Range(1, 11);
             
             if (eventType.ToLower().Equals("combat"))
             {
@@ -31,13 +30,49 @@ namespace Options
                 }
                 else
                 {
-                    Debug.LogFormat("{0} selected! You won! Stats affected: {1} health, {2} wits, {3} guts and {4} heart.", optionName, 0, wits, guts, heart);
+                    Tuple<string, int> rewardsObtained = AddRewardsByType();
+                    Debug.LogFormat("{0} selected! You won! Stats affected: {1} health, {2} wits, {3} guts and {4} heart. You gained: {5} gold and {6} items.", optionName, 0, wits, guts, heart, rewardsObtained.Item2, rewardsObtained.Item1);
                 }
             } 
             else
             {
                 Debug.LogFormat("{0} selected! Stats affected: {1} health, {2} wits, {3} guts and {4} heart.", optionName, health, wits, guts, heart);
             }
+        }
+
+        private Tuple<string, int> AddRewardsByType()
+        {
+            // Variables to store the accumulated values
+            string allItems = "";
+            int totalGold = 0;
+
+            // Iterate over the rewards list
+            foreach (Reward reward in rewards)
+            {
+                // If the type is "item", append the name
+                if (reward.rewardType == "item")
+                {
+                    allItems += reward.item + ", ";
+                }
+                // If the type is "gold", add the gold value
+                else if (reward.rewardType == "gold")
+                {
+                    totalGold += reward.gold;
+                }
+            }
+
+            // Remove the last comma and space from the item names
+            if (!string.IsNullOrEmpty(allItems))
+            {
+                allItems = allItems.Remove(allItems.Length - 2);
+            }
+
+            if (allItems.Equals(""))
+            {
+                allItems = "0";
+            }
+
+            return new Tuple<string, int>(allItems, totalGold);
         }
     }
 }
