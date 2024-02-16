@@ -10,16 +10,17 @@ public class EventDisplay : MonoBehaviour
 {
     public OptionEvent optionEvent;
 
-    public Button eventButton;
-    
-    private TextMeshProUGUI[] _event;
+//     public Button eventButton;
+    public GameObject eventDescObj;
+    private TextMeshProUGUI _eventDesc;
 
     private void Start()
     {
-        _event = eventButton.GetComponentsInChildren<TextMeshProUGUI>();
+        _eventDesc = eventDescObj.GetComponent<TextMeshProUGUI>();
 
-        _event[0].text = optionEvent.optionName;
-        _event[1].text = optionEvent.description;
+        _eventDesc.text = optionEvent.description;
+
+    
 
         // Subscribe to the button's onClick event
         eventButton.onClick.AddListener(OnClick);
