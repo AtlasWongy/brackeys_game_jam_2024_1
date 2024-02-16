@@ -10,13 +10,12 @@ public class EventDisplay : MonoBehaviour
 {
     public OptionEvent optionEvent;
 
-//     public Button eventButton;
-    public GameObject eventDescObj;
+    public Button eventButton;
     private TextMeshProUGUI _eventDesc;
 
     private void Start()
     {
-        _eventDesc = eventDescObj.GetComponent<TextMeshProUGUI>();
+        _eventDesc = eventButton.GetComponentInChildren<TextMeshProUGUI>();
 
         _eventDesc.text = optionEvent.description;
 
