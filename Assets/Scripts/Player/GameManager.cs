@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using Options;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] private Player.PlayerMovement playerPrefab;
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
 
@@ -26,11 +28,22 @@ public class GameManager : MonoBehaviour
 
         // Don't destroy GameManager when loading new scenes.
         DontDestroyOnLoad(gameObject);
+        // LoadPlayer();
     }
 
     private void Start()
     {
-        //UpdateUIStatText();
+        
+    }
+
+    private void LoadPlayer()
+    {
+        Player.PlayerMovement player = Instantiate(playerPrefab, new Vector3(-3.5f, 0.6f), Quaternion.identity);
+    }
+
+    private void LoadDoor()
+    {
+        
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
@@ -38,7 +51,7 @@ public class GameManager : MonoBehaviour
         // Modify player stats based on event outcome
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
-        PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
+        Player.PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
 
         // Update UI stat text
         UpdateUIStatText();
@@ -53,24 +66,23 @@ public class GameManager : MonoBehaviour
     // Method to update UI stat text
     public void UpdateUIStatText()
     {
-        Debug.LogFormat("Current Stats: {0} health, {1} wits, {2} guts, {3} heart, {4} good, {5} evil.", PlayerClass.PlayerInstance.GetStats().Health, PlayerClass.PlayerInstance.GetStats().Wits, PlayerClass.PlayerInstance.GetStats().Guts, PlayerClass.PlayerInstance.GetStats().Heart, PlayerClass.PlayerInstance.GetStats().Good, PlayerClass.PlayerInstance.GetStats().Evil);
+        Debug.LogFormat("Current Stats: {0} health, {1} wits, {2} guts, {3} heart, {4} good, {5} evil.", Player.PlayerClass.PlayerInstance.GetStats().Health, Player.PlayerClass.PlayerInstance.GetStats().Wits, Player.PlayerClass.PlayerInstance.GetStats().Guts, Player.PlayerClass.PlayerInstance.GetStats().Heart, Player.PlayerClass.PlayerInstance.GetStats().Good, Player.PlayerClass.PlayerInstance.GetStats().Evil);
         // Call UIManager method to update UI stat text
-        UIStatsManager.UIStatsInstance.updateText("HP", PlayerClass.PlayerInstance.GetStats().Health.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Brain", PlayerClass.PlayerInstance.GetStats().Wits.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Guts", PlayerClass.PlayerInstance.GetStats().Guts.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Heart", PlayerClass.PlayerInstance.GetStats().Heart.ToString());
+        UIStatsManager.UIStatsInstance.updateText("HP", Player.PlayerClass.PlayerInstance.GetStats().Health.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Brain", Player.PlayerClass.PlayerInstance.GetStats().Wits.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Guts", Player.PlayerClass.PlayerInstance.GetStats().Guts.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Heart", Player.PlayerClass.PlayerInstance.GetStats().Heart.ToString());
 
     }
-
-
+    
     // Method to check the win condition
     private bool CheckWinCondition()
     {
-        return PlayerClass.PlayerInstance.GetStats().Good > PlayerClass.PlayerInstance.GetStats().Evil;
+        return Player.PlayerClass.PlayerInstance.GetStats().Good > Player.PlayerClass.PlayerInstance.GetStats().Evil;
     }
     
     public bool ResolvePlayerRoll(OptionEvent optionEvent){
-        return(PlayerClass.PlayerInstance.DieRoll(optionEvent));
+        return(Player.PlayerClass.PlayerInstance.DieRoll(optionEvent));
         //return true;
     }
 }

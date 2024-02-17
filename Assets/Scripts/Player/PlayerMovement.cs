@@ -8,15 +8,18 @@ namespace Player
     public class PlayerMovement : MonoBehaviour
     {
         private Animator _animator;
-        private bool _isMoving = false;
-
+        private Enemy.Enemy _enemy;
+        private bool _isMoving;
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
+            _enemy = FindObjectOfType<Enemy.Enemy>();
         }
 
         private void FixedUpdate()
         {
+            Debug.Log($"_isMoving: {_isMoving}");
             if (_isMoving)
             {
                 var movementDirection = new Vector2(1.0f, 0.0f).normalized;
@@ -28,6 +31,7 @@ namespace Player
         public void TriggerMovement()
         {
             _isMoving = true;
+            Debug.Log($"_isMoving is: {_isMoving}");
         }
 
         private void OnTriggerEnter2D(Collider2D other)
@@ -40,6 +44,7 @@ namespace Player
             if (other.CompareTag("Door"))
             {
                 _animator.SetBool("isMoving", false);
+                other.GetComponent<Door.Door>().EnterNextScene(1);
             } 
             else if (other.CompareTag("Enemy"))
             {
@@ -57,9 +62,8 @@ namespace Player
 
         public void AttackTheEnemy()
         {
-            
+            _enemy.RemoveSelf();
         }
-        
     }
 }
 

@@ -16,7 +16,7 @@ MonoBehaviour:
   eventType: Combat
   description: A wretched smell fills up your nose......
   stats:
-    Health: -2
+    Health: 0
     Wits: 0
     Guts: 1
     Heart: -2
