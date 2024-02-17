@@ -26,7 +26,7 @@ public class UIStatsManager : MonoBehaviour
         }
 
         // Don't destroy UIStats when loading new scenes.
-        DontDestroyOnLoad(gameObject);
+        // DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update
@@ -43,7 +43,7 @@ public class UIStatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GameManager.Instance.UpdateUIStatText();
+        // GameManager.Instance.UpdateUIStatText();
     }
 
     public void updateText(string StatName, string newText){

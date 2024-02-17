@@ -10,6 +10,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private Player.PlayerMovement playerPrefab;
+
+    [SerializeField] private Button[] buttons;
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
 
@@ -27,8 +29,8 @@ public class GameManager : MonoBehaviour
         }
 
         // Don't destroy GameManager when loading new scenes.
-        DontDestroyOnLoad(gameObject);
-        // LoadPlayer();
+        // DontDestroyOnLoad(gameObject);
+        LoadPlayer();
     }
 
     private void Start()
@@ -36,7 +38,7 @@ public class GameManager : MonoBehaviour
         
     }
 
-    private void LoadPlayer()
+    public void LoadPlayer()
     {
         Player.PlayerMovement player = Instantiate(playerPrefab, new Vector3(-3.5f, 0.6f), Quaternion.identity);
     }
@@ -48,6 +50,8 @@ public class GameManager : MonoBehaviour
 
     public void HandleEventOutcome(OptionEvent optionEvent)
     {
+        DisableButtons();
+        
         // Modify player stats based on event outcome
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
@@ -85,4 +89,13 @@ public class GameManager : MonoBehaviour
         return(Player.PlayerClass.PlayerInstance.DieRoll(optionEvent));
         //return true;
     }
+
+    private void DisableButtons()
+    {
+        foreach (var button in buttons)
+        {
+            button.interactable = false;
+        }
+    }
+    
 }

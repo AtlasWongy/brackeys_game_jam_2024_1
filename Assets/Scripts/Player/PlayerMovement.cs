@@ -11,15 +11,32 @@ namespace Player
         private Enemy.Enemy _enemy;
         private bool _isMoving;
         
+        public static PlayerMovement Instance { get; private set; }
+        
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
             _enemy = FindObjectOfType<Enemy.Enemy>();
+            if (_enemy != null)
+            {
+                Instance._isMoving = true;
+            }
         }
 
         private void FixedUpdate()
         {
-            Debug.Log($"_isMoving: {_isMoving}");
             if (_isMoving)
             {
                 var movementDirection = new Vector2(1.0f, 0.0f).normalized;
@@ -30,15 +47,14 @@ namespace Player
 
         public void TriggerMovement()
         {
-            _isMoving = true;
-            Debug.Log($"_isMoving is: {_isMoving}");
+            Instance._isMoving = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other != null)
             {
-                _isMoving = false;
+                Instance._isMoving = false;
             }
             
             if (other.CompareTag("Door"))
