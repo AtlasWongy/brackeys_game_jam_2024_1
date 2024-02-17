@@ -28,5 +28,6 @@ public class EventDisplay : MonoBehaviour
     private void OnClick()
     {
         optionEvent.InvokeEvent();
+        Debug.LogFormat(GameManager.Instance.ConsoleTest().ToString());
     }
 }

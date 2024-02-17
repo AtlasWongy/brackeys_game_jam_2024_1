@@ -11,6 +11,9 @@ public class PlayerClass : MonoBehaviour
     int good = 0;
     int evil = 0;
     // Start is called before the first frame update
+    public static PlayerClass PlayerInstance;
+
+    void Awake() => PlayerInstance = this;
     void Start()
     {
         Debug.LogFormat(DieRoll().ToString());
@@ -26,7 +29,7 @@ public class PlayerClass : MonoBehaviour
         return Math.Max(Math.Max(wits,guts),heart);
     }
 
-    bool DieRoll(){
+    public bool DieRoll(){
         //apply ecounter stat modifier first
         int highestStat = GetHighestStat();
 
