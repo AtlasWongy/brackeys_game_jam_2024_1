@@ -2,11 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerClass : MonoBehaviour
+public class Global : MonoBehaviour
 {
-    int brains = 0
-    int guts = 0
-    int heart = 0
     // Start is called before the first frame update
     void Start()
     {
