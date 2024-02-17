@@ -1,5 +1,7 @@
 using Rewards;
 using System;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace Options
@@ -10,10 +12,13 @@ namespace Options
         public string optionName;
         public string eventType;
         public string description;
-
+        
+        [HideInInspector]
         public Stats stats;
 
-        public RewardList rewardList;
+        public Stats[] statList;
+
+        public RewardList[] rewardList;
 
         [HideInInspector]
         public Tuple<string, int> rewardsObtained;
@@ -22,14 +27,13 @@ namespace Options
 
         public void EventSuccess()
         {
-            if (eventType.ToLower().Equals("combat"))
-            {
-                stats.Health = 0;
-            }
-            rewardsObtained = AddRewardsByType(rewardList);
+            stats = statList[0];
+            rewardsObtained = AddRewardsByType(rewardList[0]);
         }
-        public void EventFailure(){
-            rewardsObtained = AddRewardsByType(null);
+        public void EventFailure()
+        {
+            stats = statList[1];
+            rewardsObtained = AddRewardsByType(rewardList[1]);
         }
 
         private Tuple<string, int> AddRewardsByType(RewardList rewardsToBeObtained)

@@ -11,6 +11,7 @@ namespace Player
        public static PlayerClass PlayerInstance;
    
        private Stats playerStats;
+       private int _gold;
    
        private void Awake()
        {
@@ -32,6 +33,7 @@ namespace Player
        void Start()
        {
            InitialStats(10, 5, 6, 5, 0, 0);
+           _gold = 0;
        }
    
        // Update is called once per frame
@@ -49,12 +51,22 @@ namespace Player
        {
            playerStats.AdjustStats(healthChange, witsChange, gutsChange, heartChange, goodChange, evilChange);
        }
+
+       public void AdjustGold(int goldChanged)
+       {
+           _gold = +goldChanged;
+       }
    
    
        // Method to get player stats
        public Stats GetStats()
        {
            return playerStats;
+       }
+
+       public int GetGold()
+       {
+           return _gold;
        }
    
        int GetHighestStat(OptionEvent optionEvent){

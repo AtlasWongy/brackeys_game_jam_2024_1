@@ -73,8 +73,9 @@ public class GameManager : MonoBehaviour
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
         Player.PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
-
+        PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
         _optionEvent = optionEvent;
+        
         // Update UI stat text
         // UpdateUIStatText();
 
@@ -90,10 +91,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogFormat("Current Stats: {0} health, {1} wits, {2} guts, {3} heart, {4} good, {5} evil.", Player.PlayerClass.PlayerInstance.GetStats().Health, Player.PlayerClass.PlayerInstance.GetStats().Wits, Player.PlayerClass.PlayerInstance.GetStats().Guts, Player.PlayerClass.PlayerInstance.GetStats().Heart, Player.PlayerClass.PlayerInstance.GetStats().Good, Player.PlayerClass.PlayerInstance.GetStats().Evil);
         // Call UIManager method to update UI stat text
-        UIStatsManager.UIStatsInstance.updateText("HP", Player.PlayerClass.PlayerInstance.GetStats().Health.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Brain", Player.PlayerClass.PlayerInstance.GetStats().Wits.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Guts", Player.PlayerClass.PlayerInstance.GetStats().Guts.ToString());
-        UIStatsManager.UIStatsInstance.updateText("Heart", Player.PlayerClass.PlayerInstance.GetStats().Heart.ToString());
+        UIStatsManager.UIStatsInstance.updateText("HP", "HP: " + Player.PlayerClass.PlayerInstance.GetStats().Health.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Brain", "Brain: " +Player.PlayerClass.PlayerInstance.GetStats().Wits.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Guts", "Guts: " +Player.PlayerClass.PlayerInstance.GetStats().Guts.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Heart", "Heart: " +Player.PlayerClass.PlayerInstance.GetStats().Heart.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Gold Count", "Gold Count: " +Player.PlayerClass.PlayerInstance.GetGold().ToString());
 
     }
     
