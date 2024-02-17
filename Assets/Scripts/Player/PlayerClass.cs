@@ -5,13 +5,32 @@ using System;
 
 public class PlayerClass : MonoBehaviour
 {
+    public static PlayerClass Instance;
+
     private Stats playerStats;
+
+    private void Awake()
+    {
+        // Singleton pattern implementation.
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+            return; // Ensures the rest of the Awake method doesn't execute for the duplicate GameManager
+        }
+
+        // Don't destroy player when loading new scenes.
+        DontDestroyOnLoad(gameObject);
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        //InitialStats(5, 6, 5, 0, 0);
-        //Debug.LogFormat(DieRoll().ToString());
+        InitialStats(10, 5, 6, 5, 0, 0);
+        Debug.LogFormat(DieRoll().ToString());
     }
 
     // Update is called once per frame
@@ -20,14 +39,14 @@ public class PlayerClass : MonoBehaviour
         
     }
 
-    public void InitialStats(int wits, int guts, int heart, int good, int evil)
+    public void InitialStats(int health, int wits, int guts, int heart, int good, int evil)
     {
-        playerStats = new Stats(wits, guts, heart, good, evil);
+        playerStats = new Stats(health, wits, guts, heart, good, evil);
     }
 
-    public void AdjustStats(int witsChange, int gutsChange, int heartChange, int goodChange, int evilChange)
+    public void AdjustStats(int healthChange, int witsChange, int gutsChange, int heartChange, int goodChange, int evilChange)
     {
-        playerStats.AdjustStats(witsChange, gutsChange, heartChange, goodChange, evilChange);
+        playerStats.AdjustStats(healthChange, witsChange, gutsChange, heartChange, goodChange, evilChange);
     }
 
     int GetHighestStat(){

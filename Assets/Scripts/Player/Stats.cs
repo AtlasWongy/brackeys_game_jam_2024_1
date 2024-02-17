@@ -1,17 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
+[Serializable, Inspectable]
 public class Stats
 {
-    public int Wits { get; set; }
-    public int Guts { get; set; }
-    public int Heart { get; set; }
-    public int Good { get; set; }
-    public int Evil { get; set; }
+    [Inspectable]
+    public int Health;
 
-    public Stats(int wits, int guts, int heart, int good, int evil)
+    [Inspectable]
+    public int Wits;
+
+    [Inspectable]
+    public int Guts;
+
+    [Inspectable]
+    public int Heart;
+
+    [Inspectable]
+    public int Good;
+
+    [Inspectable]
+    public int Evil;
+
+    public Stats(int health, int wits, int guts, int heart, int good, int evil)
     {
+        Health = health;
         Wits = wits;
         Guts = guts;
         Heart = heart;
@@ -20,8 +36,9 @@ public class Stats
     }
 
     // Method to adjust stats
-    public void AdjustStats(int witsChange, int gutsChange, int heartChange, int goodChange, int evilChange)
+    public void AdjustStats(int healthChange, int witsChange, int gutsChange, int heartChange, int goodChange, int evilChange)
     {
+        Health += healthChange;
         Wits += witsChange;
         Guts += gutsChange;
         Heart += heartChange;

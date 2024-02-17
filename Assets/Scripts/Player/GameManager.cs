@@ -11,8 +11,6 @@ public class GameManager : MonoBehaviour
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
 
-    private PlayerClass player;
-
     private void Awake()
     {
         // Singleton pattern implementation.
@@ -28,49 +26,35 @@ public class GameManager : MonoBehaviour
 
         // Don't destroy GameManager when loading new scenes.
         DontDestroyOnLoad(gameObject);
-
-        // Initialize player object
-        player = FindObjectOfType<PlayerClass>(); // Assuming PlayerClass is attached to a GameObject in the scene
-        if (player == null)
-        {
-            Debug.LogError("PlayerClass not found in the scene.");
-        }
     }
 
     private void Start()
     {
-        if (player != null)
-        {
-            player.InitialStats(5, 6, 5, 0, 0);
-        }
+
     }
 
-    // Method to update player stats
-    public void UpdatePlayerStats(Stats newStats)
-    {
-        
-    }
 
-    public void HandleEventOutcome(OptionEvent eventOption)
+    public void HandleEventOutcome(OptionEvent optionEvent)
     {
         // Modify player stats based on event outcome
-        player.AdjustStats(eventOption.wits, eventOption.guts, eventOption.heart, eventOption.good, eventOption.evil);
+        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}, {5}", optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
+
+        PlayerClass.Instance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
 
         // Update UI stat text
-        UpdateUIStatText(eventOption);
+        UpdateUIStatText();
 
         // Check win condition
         if (CheckWinCondition())
         {
-            // Handle win condition
+            Debug.Log("You Won!");
         }
     }
 
     // Method to update UI stat text
-    public void UpdateUIStatText(OptionEvent eventOption)
+    public void UpdateUIStatText()
     {
-        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}", eventOption.wits, eventOption.guts, eventOption.heart, eventOption.good, eventOption.evil);
-        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}", player.GetStats().Wits, player.GetStats().Guts, player.GetStats().Heart, player.GetStats().Good, player.GetStats().Evil);
+        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}, {5}", PlayerClass.Instance.GetStats().Health, PlayerClass.Instance.GetStats().Wits, PlayerClass.Instance.GetStats().Guts, PlayerClass.Instance.GetStats().Heart, PlayerClass.Instance.GetStats().Good, PlayerClass.Instance.GetStats().Evil);
         // Call UIManager method to update UI stat text
     }
 
@@ -79,6 +63,6 @@ public class GameManager : MonoBehaviour
     private bool CheckWinCondition()
     {
 
-        return player.GetStats().Good > player.GetStats().Evil;
+        return PlayerClass.Instance.GetStats().Good > PlayerClass.Instance.GetStats().Evil;
     }
 }
