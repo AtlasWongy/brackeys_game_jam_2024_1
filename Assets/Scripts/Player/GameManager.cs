@@ -114,7 +114,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var button in buttons)
         {
-            DontDestroyOnLoad(button);
+            //DontDestroyOnLoad(button);
             button.interactable = false;
         }
     }
