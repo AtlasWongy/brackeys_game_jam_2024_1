@@ -875,6 +875,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -2280893784269672642, guid: 54c304c8d54f3ab4cb3a17724bed9da7, type: 3}
+  buttons:
+  - {fileID: 732800808}
+  - {fileID: 1643502959}
+  - {fileID: 1772449309}
 --- !u!4 &496987536
 Transform:
   m_ObjectHideFlags: 0
@@ -883,8 +887,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 496987534}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.46360064, y: 1.4274209, z: -9.922325}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.46359253, y: 1.4274292, z: -9.922325}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4445,7 +4449,7 @@ SceneRoots:
   - {fileID: 1901685262}
   - {fileID: 1850790216}
   - {fileID: 346866270}
-  - {fileID: 730801343}
   - {fileID: 496987536}
+  - {fileID: 730801343}
   - {fileID: 1466950370}
   - {fileID: 639695177}

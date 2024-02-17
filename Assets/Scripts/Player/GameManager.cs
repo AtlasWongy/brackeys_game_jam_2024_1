@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Options;
+using Player;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -9,7 +10,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private Player.PlayerMovement playerPrefab;
+    [SerializeField] private PlayerMovement playerPrefab;
 
     [SerializeField] private Button[] buttons;
     // Static instance of GameManager which allows it to be accessed by any other script.
@@ -29,13 +30,15 @@ public class GameManager : MonoBehaviour
         }
 
         // Don't destroy GameManager when loading new scenes.
-        // DontDestroyOnLoad(gameObject);
-        LoadPlayer();
+        DontDestroyOnLoad(gameObject);
     }
 
-    private void Start()
+    private void Update()
     {
-        
+        if (FindObjectOfType<PlayerMovement>() == null)
+        {
+            LoadPlayer();
+        }
     }
 
     public void LoadPlayer()

@@ -4480,6 +4480,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -2280893784269672642, guid: 54c304c8d54f3ab4cb3a17724bed9da7, type: 3}
+  buttons:
+  - {fileID: 732800808}
+  - {fileID: 1643502959}
+  - {fileID: 1772449309}
 --- !u!4 &2077775882
 Transform:
   m_ObjectHideFlags: 0
