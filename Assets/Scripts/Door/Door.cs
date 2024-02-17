@@ -17,6 +17,7 @@ namespace Door
         public void EnterNextScene(int sceneIndex)
         {
             SceneManager.LoadScene(sceneIndex);
+            // GameManager.Instance.LoadEnemy();
         }
     }
 }

@@ -6,11 +6,14 @@ using Player;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerPrefab;
+    [SerializeField] private Enemy.Enemy enemyPrefab;
+    private OptionEvent _optionEvent;
 
     public Button[] buttons;
     // Static instance of GameManager which allows it to be accessed by any other script.
@@ -38,6 +41,11 @@ public class GameManager : MonoBehaviour
         if (FindObjectOfType<PlayerMovement>() == null)
         {
             LoadPlayer();
+            // Debug.Log(SceneManager.GetActiveScene().name);
+            if (SceneManager.GetActiveScene().name == "Repeat")
+            {
+                LoadEnemy();
+            }
         }
     }
 
@@ -46,9 +54,15 @@ public class GameManager : MonoBehaviour
         Player.PlayerMovement player = Instantiate(playerPrefab, new Vector3(-3.5f, 0.6f), Quaternion.identity);
     }
 
-    private void LoadDoor()
+    public void LoadEnemy()
     {
         
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            Debug.Log("Not Spawning?");
+            Enemy.Enemy enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.9f), Quaternion.identity);
+            enemy.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
+        }
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
@@ -60,6 +74,7 @@ public class GameManager : MonoBehaviour
 
         Player.PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
 
+        _optionEvent = optionEvent;
         // Update UI stat text
         // UpdateUIStatText();
 

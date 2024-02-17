@@ -3563,6 +3563,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -2280893784269672642, guid: 54c304c8d54f3ab4cb3a17724bed9da7, type: 3}
+  enemyPrefab: {fileID: 1180266945492417491, guid: 4c4ec57ddeaf1074e9d0e85fbc701b7d, type: 3}
   buttons:
   - {fileID: 732800808}
   - {fileID: 1643502959}
