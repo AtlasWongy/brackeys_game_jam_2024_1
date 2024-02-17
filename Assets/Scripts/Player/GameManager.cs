@@ -33,7 +33,6 @@ public class GameManager : MonoBehaviour
 
     }
 
-
     public void HandleEventOutcome(OptionEvent optionEvent)
     {
         // Modify player stats based on event outcome
@@ -62,7 +61,11 @@ public class GameManager : MonoBehaviour
     // Method to check the win condition
     private bool CheckWinCondition()
     {
-
         return PlayerClass.Instance.GetStats().Good > PlayerClass.Instance.GetStats().Evil;
+    }
+    
+    public bool ResolvePlayerRoll(OptionEvent optionEvent){
+        return(PlayerClass.PlayerInstance.DieRoll(optionEvent));
+        //return true;
     }
 }

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using Options;
 
 public class PlayerClass : MonoBehaviour
 {
@@ -26,7 +27,6 @@ public class PlayerClass : MonoBehaviour
         DontDestroyOnLoad(gameObject);
     }
 
-    // Start is called before the first frame update
     void Start()
     {
         InitialStats(10, 5, 6, 5, 0, 0);
@@ -59,11 +59,27 @@ public class PlayerClass : MonoBehaviour
         return playerStats;
     }
 
-    bool DieRoll(){
+    int GetHighestStat(OptionEvent optionEvent){
+        return Math.Max(Math.Max(wits+optionEvent.wits,guts+optionEvent.guts),heart+optionEvent.guts);
+    }
+
+    public bool DieRoll(){
         //apply ecounter stat modifier first
         int highestStat = GetHighestStat();
 
         int dieRoll = UnityEngine.Random.Range(1,11);
+
+        return highestStat > dieRoll;
+    }
+
+    public bool DieRoll(OptionEvent optionEvent){
+        int highestStat = GetHighestStat(optionEvent);
+
+        Debug.LogFormat("Your highest stat is {0}",highestStat);
+
+        int dieRoll = UnityEngine.Random.Range(1,11);
+
+        Debug.LogFormat("Enemy rolled a {0}",dieRoll);
 
         return highestStat > dieRoll;
     }
