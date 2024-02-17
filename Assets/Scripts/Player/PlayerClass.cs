@@ -5,15 +5,13 @@ using System;
 
 public class PlayerClass : MonoBehaviour
 {
-    int wits = 5;
-    int guts = 6;
-    int heart = 5;
-    int good = 0;
-    int evil = 0;
+    private Stats playerStats;
+
     // Start is called before the first frame update
     void Start()
     {
-        Debug.LogFormat(DieRoll().ToString());
+        //InitialStats(5, 6, 5, 0, 0);
+        //Debug.LogFormat(DieRoll().ToString());
     }
 
     // Update is called once per frame
@@ -22,8 +20,24 @@ public class PlayerClass : MonoBehaviour
         
     }
 
+    public void InitialStats(int wits, int guts, int heart, int good, int evil)
+    {
+        playerStats = new Stats(wits, guts, heart, good, evil);
+    }
+
+    public void AdjustStats(int witsChange, int gutsChange, int heartChange, int goodChange, int evilChange)
+    {
+        playerStats.AdjustStats(witsChange, gutsChange, heartChange, goodChange, evilChange);
+    }
+
     int GetHighestStat(){
-        return Math.Max(Math.Max(wits,guts),heart);
+        return Math.Max(Math.Max(playerStats.Wits, playerStats.Guts), playerStats.Heart);
+    }
+
+    // Method to get player stats
+    public Stats GetStats()
+    {
+        return playerStats;
     }
 
     bool DieRoll(){
@@ -36,6 +50,6 @@ public class PlayerClass : MonoBehaviour
     }
 
     bool IsGoodHigherThanEvil(){
-        return good > evil;
+        return playerStats.Good > playerStats.Evil;
     }
 }

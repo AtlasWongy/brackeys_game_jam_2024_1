@@ -15,6 +15,8 @@ namespace Options
         public int wits;
         public int guts;
         public int heart;
+        public int good;
+        public int evil;
 
         public RewardList rewardList;
 
