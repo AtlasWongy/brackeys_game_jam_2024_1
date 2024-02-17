@@ -30,15 +30,15 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-
+        UpdateUIStatText();
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
     {
         // Modify player stats based on event outcome
-        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}, {5}", optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
+        Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
-        PlayerClass.Instance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
+        PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
 
         // Update UI stat text
         UpdateUIStatText();
@@ -46,14 +46,14 @@ public class GameManager : MonoBehaviour
         // Check win condition
         if (CheckWinCondition())
         {
-            Debug.Log("You Won!");
+            Debug.Log("You Won! Game over.");
         }
     }
 
     // Method to update UI stat text
     public void UpdateUIStatText()
     {
-        Debug.LogFormat("{0}, {1}, {2}, {3}, {4}, {5}", PlayerClass.Instance.GetStats().Health, PlayerClass.Instance.GetStats().Wits, PlayerClass.Instance.GetStats().Guts, PlayerClass.Instance.GetStats().Heart, PlayerClass.Instance.GetStats().Good, PlayerClass.Instance.GetStats().Evil);
+        Debug.LogFormat("Current Stats: {0} health, {1} wits, {2} guts, {3} heart, {4} good, {5} evil.", PlayerClass.PlayerInstance.GetStats().Health, PlayerClass.PlayerInstance.GetStats().Wits, PlayerClass.PlayerInstance.GetStats().Guts, PlayerClass.PlayerInstance.GetStats().Heart, PlayerClass.PlayerInstance.GetStats().Good, PlayerClass.PlayerInstance.GetStats().Evil);
         // Call UIManager method to update UI stat text
     }
 
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
     // Method to check the win condition
     private bool CheckWinCondition()
     {
-        return PlayerClass.Instance.GetStats().Good > PlayerClass.Instance.GetStats().Evil;
+        return PlayerClass.PlayerInstance.GetStats().Good > PlayerClass.PlayerInstance.GetStats().Evil;
     }
     
     public bool ResolvePlayerRoll(OptionEvent optionEvent){

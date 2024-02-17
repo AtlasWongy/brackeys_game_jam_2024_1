@@ -27,12 +27,14 @@ public class EventDisplay : MonoBehaviour
 
     private void OnClick()
     {
-        optionEvent.InvokeEvent();
+        //optionEvent.InvokeEvent();
         bool encounterSuccess = GameManager.Instance.ResolvePlayerRoll(optionEvent);
-        if(encounterSuccess){
+        if (encounterSuccess){
+            optionEvent.EventSuccess();
             Debug.LogFormat("Wow! you won!");
         }
         else{
+            optionEvent.EventFailure();
             Debug.LogFormat("Oh no! You lost!");
         }
         

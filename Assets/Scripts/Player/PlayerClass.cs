@@ -6,18 +6,18 @@ using Options;
 
 public class PlayerClass : MonoBehaviour
 {
-    public static PlayerClass Instance;
+    public static PlayerClass PlayerInstance;
 
     private Stats playerStats;
 
     private void Awake()
     {
         // Singleton pattern implementation.
-        if (Instance == null)
+        if (PlayerInstance == null)
         {
-            Instance = this;
+            PlayerInstance = this;
         }
-        else if (Instance != this)
+        else if (PlayerInstance != this)
         {
             Destroy(gameObject);
             return; // Ensures the rest of the Awake method doesn't execute for the duplicate GameManager
@@ -30,7 +30,6 @@ public class PlayerClass : MonoBehaviour
     void Start()
     {
         InitialStats(10, 5, 6, 5, 0, 0);
-        Debug.LogFormat(DieRoll().ToString());
     }
 
     // Update is called once per frame
@@ -49,9 +48,6 @@ public class PlayerClass : MonoBehaviour
         playerStats.AdjustStats(healthChange, witsChange, gutsChange, heartChange, goodChange, evilChange);
     }
 
-    int GetHighestStat(){
-        return Math.Max(Math.Max(playerStats.Wits, playerStats.Guts), playerStats.Heart);
-    }
 
     // Method to get player stats
     public Stats GetStats()
@@ -60,17 +56,9 @@ public class PlayerClass : MonoBehaviour
     }
 
     int GetHighestStat(OptionEvent optionEvent){
-        return Math.Max(Math.Max(wits+optionEvent.wits,guts+optionEvent.guts),heart+optionEvent.guts);
+        return Math.Max(Math.Max(playerStats.Wits + optionEvent.stats.Wits, playerStats.Guts+optionEvent.stats.Guts), playerStats.Heart +optionEvent.stats.Guts);
     }
 
-    public bool DieRoll(){
-        //apply ecounter stat modifier first
-        int highestStat = GetHighestStat();
-
-        int dieRoll = UnityEngine.Random.Range(1,11);
-
-        return highestStat > dieRoll;
-    }
 
     public bool DieRoll(OptionEvent optionEvent){
         int highestStat = GetHighestStat(optionEvent);
