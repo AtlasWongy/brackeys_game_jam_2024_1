@@ -25,6 +25,5 @@ public class GameManager : MonoBehaviour
 
     public bool ConsoleTest(){
 
-        return PlayerInstance.DieRoll();
     }
 }
