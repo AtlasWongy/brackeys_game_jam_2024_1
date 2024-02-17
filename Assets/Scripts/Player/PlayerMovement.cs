@@ -32,13 +32,34 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log("Time for scene transition");
-            if (other.CompareTag("Door"))
+            if (other != null)
             {
                 _isMoving = false;
+            }
+            
+            if (other.CompareTag("Door"))
+            {
                 _animator.SetBool("isMoving", false);
+            } 
+            else if (other.CompareTag("Enemy"))
+            {
+                _animator.SetTrigger("startAttacking");
+                StartCoroutine(WaitForAnimationEnd());
             }
         }
+
+        IEnumerator WaitForAnimationEnd()
+        {
+            yield return new WaitForSeconds(1.25f);
+            _animator.SetTrigger("stopAttacking");
+            _animator.SetBool("isMoving", false);
+        }
+
+        public void AttackTheEnemy()
+        {
+            
+        }
+        
     }
 }
 
