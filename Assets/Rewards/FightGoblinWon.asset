@@ -13,7 +13,11 @@ MonoBehaviour:
   m_Name: FightGoblinWon
   m_EditorClassIdentifier: 
   rewards:
+  - rewardType: item
+    gold: 0
+    item: Sword
+    description: 
   - rewardType: gold
-    gold: 1
+    gold: 5
     item: 
-    description: Type of Currency
+    description: 
