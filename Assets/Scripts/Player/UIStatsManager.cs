@@ -43,7 +43,7 @@ public class UIStatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // GameManager.Instance.UpdateUIStatText();
     }
 
     public void updateText(string StatName, string newText){

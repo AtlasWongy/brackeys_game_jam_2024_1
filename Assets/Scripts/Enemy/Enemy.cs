@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,9 +7,23 @@ namespace Enemy
 {
     public class Enemy : MonoBehaviour
     {
+        private Door.Door _door;
+
+        private void Start()
+        {
+            _door = FindObjectOfType<Door.Door>();
+        }
+
         public void RemoveSelf()
         {
-            Destroy(this);
+            Destroy(gameObject);
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.Instance.EnableButtons();
+            GameManager.Instance.UpdateUIStatText();
+            _door.DropDoor();
         }
     }
 }

@@ -8,11 +8,31 @@ namespace Player
     public class PlayerMovement : MonoBehaviour
     {
         private Animator _animator;
-        private bool _isMoving = false;
-
+        private Enemy.Enemy _enemy;
+        private bool _isMoving;
+        
+        public static PlayerMovement Instance { get; private set; }
+        
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else if (Instance != this)
+            {
+                Destroy(gameObject);
+            }
+        }
+        
         private void Start()
         {
             _animator = GetComponent<Animator>();
+            _enemy = FindObjectOfType<Enemy.Enemy>();
+            if (_enemy != null)
+            {
+                Instance._isMoving = true;
+            }
         }
 
         private void FixedUpdate()
@@ -27,19 +47,20 @@ namespace Player
 
         public void TriggerMovement()
         {
-            _isMoving = true;
+            Instance._isMoving = true;
         }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
             if (other != null)
             {
-                _isMoving = false;
+                Instance._isMoving = false;
             }
             
             if (other.CompareTag("Door"))
             {
                 _animator.SetBool("isMoving", false);
+                other.GetComponent<Door.Door>().EnterNextScene(1);
             } 
             else if (other.CompareTag("Enemy"))
             {
@@ -57,9 +78,8 @@ namespace Player
 
         public void AttackTheEnemy()
         {
-            
+            _enemy.RemoveSelf();
         }
-        
     }
 }
 
