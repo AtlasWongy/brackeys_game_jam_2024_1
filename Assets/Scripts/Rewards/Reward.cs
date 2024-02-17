@@ -9,17 +9,38 @@ namespace Rewards
     [Serializable, Inspectable]
     public class Reward
     {
-        [Inspectable]
         public string rewardType;
 
-        [Inspectable]
-        public int gold;
-
-        [Inspectable]
         public string item;
 
-        [Inspectable]
+        public int quantity;
+
         public string description;
     }
+
+    //public interface Item
+    //{
+    //    string GetItemDetails();
+    //}
+    
+    //public class Gold : Item
+    //{
+    //    public int Amount { get; set; }
+
+    //    public string GetItemDetails()
+    //    {
+    //        return Amount.ToString();
+    //    }
+    //}
+
+    //public class Equipment : Item
+    //{
+    //    public string Type { get; set; }
+
+    //    public string GetItemDetails()
+    //    {
+    //        return Type;
+    //    }
+    //}
 }
 

@@ -35,5 +35,7 @@ public class EventDisplay : MonoBehaviour
         else{
             Debug.LogFormat("Oh no! You lost!");
         }
+        
+        GameManager.Instance.HandleEventOutcome(optionEvent);
     }
 }

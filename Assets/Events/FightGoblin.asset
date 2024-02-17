@@ -15,8 +15,11 @@ MonoBehaviour:
   optionName: Fight Goblin
   eventType: Combat
   description: A wretched smell fills up your nose......
-  health: -2
-  wits: 0
-  guts: 1
-  heart: -1
+  stats:
+    Health: -2
+    Wits: 0
+    Guts: 1
+    Heart: -2
+    Good: 1
+    Evil: 0
   rewardList: {fileID: 11400000, guid: fa4755f50115bbe4f98030b6e4770e93, type: 2}

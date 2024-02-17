@@ -11,12 +11,16 @@ namespace Options
         public string eventType;
         public string description;
 
-        public int health;
-        public int wits;
-        public int guts;
-        public int heart;
+        public Stats stats;
+        //public int health;
+        //public int wits;
+        //public int guts;
+        //public int heart;
+        //public int good;
+        //public int evil;
 
         public RewardList rewardList;
+
 
         public void EventSuccess(){
             //NOT VOID, SHOULD RETURN SOMETHING TO THE GAME MANAGER

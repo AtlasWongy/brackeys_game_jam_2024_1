@@ -15,8 +15,11 @@ MonoBehaviour:
   optionName: Save Kid
   eventType: Random
   description: Please help me!
-  health: -1
-  wits: 0
-  guts: 0
-  heart: 2
-  Reward: []
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 2
+    Good: 1
+    Evil: 0
+  rewardList: {fileID: 0}
