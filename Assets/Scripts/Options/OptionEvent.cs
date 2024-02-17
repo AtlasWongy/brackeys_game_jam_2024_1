@@ -18,8 +18,17 @@ namespace Options
 
         public RewardList rewardList;
 
+        public void EventSuccess(){
+            //NOT VOID, SHOULD RETURN SOMETHING TO THE GAME MANAGER
+        }
+
+        public void EventFailure(){
+            //NOT VOID, SHOULD RETURN SOMETHING TO THE GAME MANAGER
+        }
+
         public void InvokeEvent()
         {
+            //NOTE: ALL FUTURE DICE ROLLS RESOLVED AT PLAYER LEVEL
             int diceResult = UnityEngine.Random.Range(1, 11);
             
             if (eventType.ToLower().Equals("combat"))
