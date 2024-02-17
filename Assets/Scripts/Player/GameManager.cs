@@ -23,8 +23,8 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public bool ConsoleTest(){
-        //return(PlayerClass.PlayerInstance.DieRoll());
-        return true;
+    public bool ResolvePlayerRoll(OptionEvent optionEvent){
+        return(PlayerClass.PlayerInstance.DieRoll(optionEvent));
+        //return true;
     }
 }
