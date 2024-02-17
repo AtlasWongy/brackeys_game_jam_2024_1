@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        UpdateUIStatText();
+        //UpdateUIStatText();
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
@@ -55,6 +55,11 @@ public class GameManager : MonoBehaviour
     {
         Debug.LogFormat("Current Stats: {0} health, {1} wits, {2} guts, {3} heart, {4} good, {5} evil.", PlayerClass.PlayerInstance.GetStats().Health, PlayerClass.PlayerInstance.GetStats().Wits, PlayerClass.PlayerInstance.GetStats().Guts, PlayerClass.PlayerInstance.GetStats().Heart, PlayerClass.PlayerInstance.GetStats().Good, PlayerClass.PlayerInstance.GetStats().Evil);
         // Call UIManager method to update UI stat text
+        UIStatsManager.UIStatsInstance.updateText("HP", PlayerClass.PlayerInstance.GetStats().Health.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Brain", PlayerClass.PlayerInstance.GetStats().Wits.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Guts", PlayerClass.PlayerInstance.GetStats().Guts.ToString());
+        UIStatsManager.UIStatsInstance.updateText("Heart", PlayerClass.PlayerInstance.GetStats().Heart.ToString());
+
     }
 
 
