@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerPrefab;
 
-    [SerializeField] private Button[] buttons;
+    public Button[] buttons;
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
 
@@ -61,13 +61,13 @@ public class GameManager : MonoBehaviour
         Player.PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
 
         // Update UI stat text
-        UpdateUIStatText();
+        // UpdateUIStatText();
 
         // Check win condition
-        if (CheckWinCondition())
-        {
-            Debug.Log("You Won! Game over.");
-        }
+        // if (CheckWinCondition())
+        // {
+        //     Debug.Log("You Won! Game over.");
+        // }
     }
 
     // Method to update UI stat text
@@ -97,7 +97,16 @@ public class GameManager : MonoBehaviour
     {
         foreach (var button in buttons)
         {
+            DontDestroyOnLoad(button);
             button.interactable = false;
+        }
+    }
+
+    public void EnableButtons()
+    {
+        foreach (var button in buttons)
+        {
+            button.interactable = true;
         }
     }
     

@@ -26,7 +26,7 @@ public class UIStatsManager : MonoBehaviour
         }
 
         // Don't destroy UIStats when loading new scenes.
-        // DontDestroyOnLoad(gameObject);
+        DontDestroyOnLoad(gameObject);
     }
 
     // Start is called before the first frame update

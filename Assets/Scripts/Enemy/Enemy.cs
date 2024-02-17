@@ -21,6 +21,8 @@ namespace Enemy
 
         private void OnDestroy()
         {
+            GameManager.Instance.EnableButtons();
+            GameManager.Instance.UpdateUIStatText();
             _door.DropDoor();
         }
     }
