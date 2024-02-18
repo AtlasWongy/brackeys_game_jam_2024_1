@@ -83,4 +83,20 @@ public class PlayerClass : MonoBehaviour
     public bool IsPersonalityCowardly(){
         return playerStats.Guts <= 3;
     }
+
+    public bool IsPersonalityCunning(){
+        return playerStats.Wits > 7;
+    }
+
+    public bool IsPersonalityDull(){
+        return playerStats.Wits <= 3;
+    }
+
+    public bool IsPersonalityNoble(){
+        return playerStats.Heart > 7;
+    }
+
+    public bool IsPersonalitySelfish(){
+        return playerStats.Heart <= 3;
+    }
 }
