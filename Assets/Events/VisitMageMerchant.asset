@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: VisitMageMerchant
+  m_EditorClassIdentifier: 
+  optionName: Visit Mage Merchant
+  eventType: Shop
+  description: Arcane swirls fills the air... but yet somewhat whimsical
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 4
+    Guts: -1
+    Heart: 0
+    Good: 1
+    Evil: -1
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: ae5a889de48ec3c48abd92eafd303c68, type: 2}
+  - {fileID: 11400000, guid: c1c4a45d3f3787d459f6c7c3c5bdc3de, type: 2}
+  sprite: {fileID: -31698464, guid: 3e1da4015e60ca94db229359375dc4ab, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog:
+  - Come come! May my wares bring u wisdom!
+  - Begone. Mindless one
+  eventOutCome: 0

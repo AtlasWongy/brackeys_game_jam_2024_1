@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: VisitNinjaMerchant
+  m_EditorClassIdentifier: 
+  optionName: Visit Ninja Merchant
+  eventType: Shop
+  description: I feel shadows lurking around me
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 3
+    Guts: 3
+    Heart: 2
+    Good: 0
+    Evil: 0
+  - Health: 0
+    Wits: 3
+    Guts: 3
+    Heart: 2
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 20d35b853164ce541b736d0902b69e2c, type: 2}
+  - {fileID: 11400000, guid: 54faeabd607c9354abc44d19ca0f1586, type: 2}
+  sprite: {fileID: 478292106, guid: 9119f3ae217708d4083c3de7251480ef, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog: []
+  eventOutCome: 0

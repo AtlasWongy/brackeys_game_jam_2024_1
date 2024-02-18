@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: FightDarkWarrior
+  m_EditorClassIdentifier: 
+  optionName: Fight Dark Warrior
+  eventType: Combat
+  description: Dark Energy Crackles in the air. Foe Ahead is dangerous
+  stats:
+    Health: -3
+    Wits: 0
+    Guts: 0
+    Heart: -1
+    Good: -3
+    Evil: 3
+  statList:
+  - Health: 0
+    Wits: 1
+    Guts: 3
+    Heart: 0
+    Good: 4
+    Evil: -2
+  - Health: -3
+    Wits: 0
+    Guts: 0
+    Heart: -1
+    Good: -3
+    Evil: 3
+  rewardList:
+  - {fileID: 11400000, guid: 22f4fe5d48783294ba3402dcac4e1e43, type: 2}
+  - {fileID: 11400000, guid: d98ee1528845de0499326565794e054a, type: 2}
+  sprite: {fileID: -1502668345, guid: 63dad3d534117144cb9f29c9c0030a73, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: 1a539880656b2474686633f7ab11b148, type: 2}
+  - {fileID: 7400000, guid: 94019acb863c6084e857cdc6acb9bcdf, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: aaa66d794181dca4583f4d9fe5e13536, type: 2}
+  animationSpeed: 0
+  loop: 1
+  dialog: []
+  eventOutCome: 0

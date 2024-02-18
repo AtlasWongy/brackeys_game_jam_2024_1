@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: VisitForeignWarrior
+  m_EditorClassIdentifier: 
+  optionName: Visting Foreign Warrior
+  eventType: Shop
+  description: A mystery presence lingers in the forest
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 0
+    Guts: 3
+    Heart: 4
+    Good: 0
+    Evil: -2
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 1cb1759c902f4694dbee09bfa7f66bc0, type: 2}
+  - {fileID: 11400000, guid: 46cb49c33b2044b4089b886448f3fc19, type: 2}
+  sprite: {fileID: 413868339, guid: 47c282940bd83ba4aa65c5b0705aa9e9, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog:
+  - Well bought Warrior. May my wares bring you strength
+  - Perhaps... another time
+  eventOutCome: 0
