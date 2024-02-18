@@ -1,24 +1,36 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NPC;
 using Options;
 using Player;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.Animations;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Object = UnityEngine.Object;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private PlayerMovement playerPrefab;
     [SerializeField] private Enemy.Enemy enemyPrefab;
+    [SerializeField] private NpcInteraction npcPrefab;
+    [SerializeField] private Merchant.Merchant _merchantPrefab;
+    [SerializeField] private GameObject dialogPrompt;
     private OptionEvent _optionEvent;
 
     public Button[] buttons;
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
-
+    public bool playerWinsEncounter;
+    public static Action OnDestroySignal;
+    private PlayerMovement _player;
+    private string _eventType;
+    private NpcInteraction _npc;
+    private Merchant.Merchant _merchant;
+    
     private void Awake()
     {
         // Singleton pattern implementation.
@@ -44,37 +56,72 @@ public class GameManager : MonoBehaviour
             // Debug.Log(SceneManager.GetActiveScene().name);
             if (SceneManager.GetActiveScene().name == "Repeat")
             {
-                LoadEnemy();
+                if (_optionEvent.eventType == "Combat")
+                {
+                    LoadEnemy();
+                }
+                else if (_optionEvent.eventType == "Random")
+                {
+                    LoadNpc();
+                }
+                else if (_optionEvent.eventType == "Shop")
+                {
+                    LoadMerchant();
+                }
             }
         }
     }
 
     public void LoadPlayer()
     {
-        Player.PlayerMovement player = Instantiate(playerPrefab, new Vector3(-3.5f, 0.6f), Quaternion.identity);
+        _player = Instantiate(playerPrefab, new Vector3(-3.5f, 0.6f), Quaternion.identity);
     }
 
     public void LoadEnemy()
     {
-        
         if (SceneManager.GetActiveScene().buildIndex == 1)
         {
-            Debug.Log("Not Spawning?");
-            Enemy.Enemy enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.9f), Quaternion.identity);
+            Enemy.Enemy enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
             enemy.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
+            enemy.GetComponent<Animator>().runtimeAnimatorController = _optionEvent.runTimeAnimatorController;
+            enemy.GetComponent<Animator>().Play("Goblin_Idle");
+
         }
     }
 
-    public void HandleEventOutcome(OptionEvent optionEvent)
+    public void LoadNpc()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _npc = Instantiate(npcPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
+            _npc.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
+        }
+    }
+
+    private void LoadMerchant()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 1)
+        {
+            _merchant = Instantiate(_merchantPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
+            _merchant.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
+        }
+    }
+
+    public void HandleEventOutcome(OptionEvent optionEvent, bool playerWins)
     {
         DisableButtons();
         
         // Modify player stats based on event outcome
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
-        Player.PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
+        PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
         PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
         _optionEvent = optionEvent;
+
+        if (_optionEvent.eventType == "Combat")
+        {
+            playerWinsEncounter = playerWins;
+        }
         
         // Update UI stat text
         // UpdateUIStatText();
@@ -114,7 +161,7 @@ public class GameManager : MonoBehaviour
     {
         foreach (var button in buttons)
         {
-            //DontDestroyOnLoad(button);
+            // DontDestroyOnLoad(button);
             button.interactable = false;
         }
     }
@@ -125,6 +172,22 @@ public class GameManager : MonoBehaviour
         {
             button.interactable = true;
         }
+    }
+
+    public void HandleDialog()
+    {
+        dialogPrompt.SetActive(true);
+        dialogPrompt.GetComponentInChildren<TextMeshProUGUI>().text = _optionEvent.dialog;
+        StartCoroutine(CloseTheDialogPrompt());
+    }
+
+    IEnumerator CloseTheDialogPrompt()
+    {
+        yield return new WaitForSeconds(2.5f);
+        dialogPrompt.SetActive(false);
+        Instance.EnableButtons();
+        Instance.UpdateUIStatText();
+        OnDestroySignal.Invoke();
     }
     
 }

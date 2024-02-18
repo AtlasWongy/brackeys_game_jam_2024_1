@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NPC;
 using UnityEngine;
 
 namespace Player
@@ -9,9 +10,12 @@ namespace Player
     {
         private Animator _animator;
         private Enemy.Enemy _enemy;
+        private NpcInteraction _npcInteraction;
+        private Merchant.Merchant _merchant;
         private bool _isMoving;
         
         public static PlayerMovement Instance { get; private set; }
+        public bool _playerWins;
         
         private void Awake()
         {
@@ -29,7 +33,19 @@ namespace Player
         {
             _animator = GetComponent<Animator>();
             _enemy = FindObjectOfType<Enemy.Enemy>();
+            _npcInteraction = FindObjectOfType<NpcInteraction>();
+            _merchant = FindObjectOfType<Merchant.Merchant>();
+            
             if (_enemy != null)
+            {
+                _playerWins = GameManager.Instance.playerWinsEncounter;
+                Instance._isMoving = true;
+            } 
+            else if (_npcInteraction != null)
+            {
+                Instance._isMoving = true;
+            }
+            else if (_merchant != null)
             {
                 Instance._isMoving = true;
             }
@@ -52,6 +68,7 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
+            Debug.Log($"The player win the encounter: {_playerWins} from ${other.name}");
             if (other != null)
             {
                 Instance._isMoving = false;
@@ -64,8 +81,26 @@ namespace Player
             } 
             else if (other.CompareTag("Enemy"))
             {
-                _animator.SetTrigger("startAttacking");
-                StartCoroutine(WaitForAnimationEnd());
+                if (_playerWins)
+                {
+                    _animator.SetTrigger("startAttacking");
+                    StartCoroutine(WaitForAnimationEnd());
+                }
+                else
+                {
+                    _animator.SetBool("isMoving", false);
+                    _enemy.AttackPlayer();
+                }
+            }
+            else if (other.CompareTag("NPC"))
+            {
+                _animator.SetBool("isMoving", false);
+                _npcInteraction.InteractWithPlayer();
+            }
+            else if (other.CompareTag("Merchant"))
+            {
+                _animator.SetBool("isMoving", false);
+                _merchant.InteractWIthPlayer();
             }
         }
 

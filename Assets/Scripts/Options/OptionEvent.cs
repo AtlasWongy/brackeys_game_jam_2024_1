@@ -12,18 +12,18 @@ namespace Options
         public string optionName;
         public string eventType;
         public string description;
-        
         [HideInInspector]
         public Stats stats;
-
         public Stats[] statList;
-
         public RewardList[] rewardList;
-
         [HideInInspector]
         public Tuple<string, int> rewardsObtained;
-
         public Sprite sprite;
+        public AnimationClip[] animationClipList;
+        public RuntimeAnimatorController runTimeAnimatorController;
+        public float animationSpeed;
+        public bool loop = true;
+        public string dialog;
 
         public void EventSuccess()
         {

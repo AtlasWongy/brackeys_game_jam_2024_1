@@ -19,7 +19,28 @@ MonoBehaviour:
     Health: 0
     Wits: 0
     Guts: 0
-    Heart: 2
+    Heart: 1
     Good: 1
     Evil: 0
-  rewardList: {fileID: 0}
+  statList:
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 1
+    Good: 1
+    Evil: 0
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: -1
+    Good: -1
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 76f269c13e6cd9049a5682fd25fa94a4, type: 2}
+  - {fileID: 11400000, guid: 04bdc5f6e6f3f0e4ea5f20cd4a4575fe, type: 2}
+  sprite: {fileID: -1421715616, guid: c4e9c990c74b28b48983372a8f95d430, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog: Thank you! You are my hero! *You saved this extremely useless kid*

@@ -12,15 +12,14 @@ public class EventDisplay : MonoBehaviour
 
     public Button eventButton;
     private TextMeshProUGUI _eventDesc;
+    private bool _playerWins;
 
     private void Start()
     {
         _eventDesc = eventButton.GetComponentInChildren<TextMeshProUGUI>();
 
         _eventDesc.text = optionEvent.description;
-
-    
-
+        
         // Subscribe to the button's onClick event
         eventButton.onClick.AddListener(OnClick);
     }
@@ -32,12 +31,14 @@ public class EventDisplay : MonoBehaviour
         if (encounterSuccess){
             optionEvent.EventSuccess();
             Debug.LogFormat("Wow! you won!");
+            _playerWins = true;
         }
         else{
             optionEvent.EventFailure();
             Debug.LogFormat("Oh no! You lost!");
+            _playerWins = false;
         }
         
-        GameManager.Instance.HandleEventOutcome(optionEvent);
+        GameManager.Instance.HandleEventOutcome(optionEvent, _playerWins);
     }
 }
