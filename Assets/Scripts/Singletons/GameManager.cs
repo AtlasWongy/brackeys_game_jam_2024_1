@@ -140,12 +140,16 @@ namespace Singletons
 
         private bool PrincessAttributeCheck(int? demand)
         {
-            switch(demand){
+            switch(demand)
+            {
                 case 1:
                     return (PlayerClass.PlayerInstance.GetGold()>10);
+                case 2:
+                    return (PlayerClass.PlayerInstance.GetGold()<5);
+                
                 default:
                     return false;
-                    
+                
             }
         }
 
@@ -164,6 +168,7 @@ namespace Singletons
 
             case 4:
                 return (EventDefeats > 1);
+
             default:
                     return false;
             }
@@ -232,7 +237,7 @@ namespace Singletons
 
             PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
             PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
-
+            
             if(optionEvent.merchantType != null)
             {
                 PlayerClass.PlayerInstance.HandleMerchant(optionEvent.merchantType);
@@ -248,7 +253,7 @@ namespace Singletons
 
             DoorCounter += 1;
 
-            if (DoorCounter == 1) //NUMBER OF DOORS IN THE GAME
+            if (DoorCounter == 2) //NUMBER OF DOORS IN THE GAME
             {   
                 //Are we visually displaying the princess somehow? Here's where we are doing it if we are.
                 if(PrincessEndCheck())
