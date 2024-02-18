@@ -31,6 +31,7 @@ namespace Enemy
             GameManager.Instance.EnableButtons();
             GameManager.Instance.UpdateUIStatText();
             _door.DropDoor();
+            GameManager.Instance.LoadAllEvents();
         }
         
         IEnumerator WaitForAnimationEnd()

@@ -65,6 +65,8 @@ namespace Singletons
 
         private List<string> UsedEventNames = new List<string>();
         private OptionEvent[] optionEventList;
+
+        private List<int> selectedOptions = new List<int>();
         public string optionEventFolder;
 
         private void Awake()
@@ -82,6 +84,7 @@ namespace Singletons
 
             PrincessStartGenerate();
             optionEventList = Resources.LoadAll<OptionEvent>(optionEventFolder);
+            selectedOptions.Add(-1);
 
         }
 
@@ -339,6 +342,7 @@ namespace Singletons
             Instance.EnableButtons();
             Instance.UpdateUIStatText();
             OnDestroySignal.Invoke();
+            LoadAllEvents();
         }
 
 
@@ -352,13 +356,17 @@ namespace Singletons
             return UsedEventNames;
         }
 
-        public void LoadEvent(Button eventButton, OptionEvent optionEvent, TextMeshProUGUI _eventDesc)
+        public void LoadAllEvents(){
+            LoadEvent(GameObject.Find("Option One").GetComponentInChildren<Button>(),getOptionEvent());
+            LoadEvent(GameObject.Find("Option Two").GetComponentInChildren<Button>(),getOptionEvent());
+            LoadEvent(GameObject.Find("Option Three").GetComponentInChildren<Button>(),getOptionEvent());
+        }
+
+        public void LoadEvent(Button eventButton, OptionEvent optionEvent)
         {
             eventButton.GetComponent<EventDisplay>().optionEvent = getOptionEvent();
 
-            _eventDesc = eventButton.GetComponentInChildren<TextMeshProUGUI>();
-
-            _eventDesc.text = optionEvent.description;
+            eventButton.GetComponentInChildren<TextMeshProUGUI>().text = optionEvent.description;
         }
 
         private OptionEvent getOptionEvent()
@@ -366,11 +374,12 @@ namespace Singletons
             Debug.Log(optionEventList.Length);
             if (optionEventList.Length > 0)
             {
-                //while (true)
-                //{
                 int randomIndex = UnityEngine.Random.Range(0, optionEventList.Length);
-
+                
                 OptionEvent assignedOptionEvent = optionEventList[randomIndex];
+
+                selectedOptions.Add(randomIndex);
+
                 //    Debug.Log(GameManager.Instance.TrackEventOptions(null));
                 //    if (!GameManager.Instance.TrackEventOptions(null).Contains(assignedOptionEvent.optionName))
                 //    {

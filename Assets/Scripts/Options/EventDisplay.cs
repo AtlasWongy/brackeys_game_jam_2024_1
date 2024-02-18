@@ -18,7 +18,7 @@ public class EventDisplay : MonoBehaviour
 
     private void Start()
     {
-        GameManager.Instance.LoadEvent(eventButton, optionEvent, _eventDesc);
+        GameManager.Instance.LoadEvent(eventButton, optionEvent);
         // Subscribe to the button's onClick event
         eventButton.onClick.AddListener(OnClick);
     }
