@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Singletons;
 using UnityEngine;
 
 namespace Merchant
