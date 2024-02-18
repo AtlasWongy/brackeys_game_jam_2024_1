@@ -72,7 +72,7 @@ public class PlayerClass : MonoBehaviour
         return highestStat > dieRoll;
     }
 
-    bool IsGoodHigherThanEvil(){
+    public bool IsGoodHigherThanEvil(){
         return playerStats.Good > playerStats.Evil;
     }
 

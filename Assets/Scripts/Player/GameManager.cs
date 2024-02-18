@@ -45,7 +45,7 @@ public class GameManager : MonoBehaviour
 
     private int DoorCounter = 0;
 
-
+    private List<string> OptionsSelected;
     private void Awake()
     {
         // Singleton pattern implementation.
@@ -67,10 +67,12 @@ public class GameManager : MonoBehaviour
     {
         //UpdateUIStatText();
         PrincessStartGenerate();
+        OptionsSelected = new List<string>;
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
     {
+        OptionsSelected.Add(optionEvent.optionName);
         // Modify player stats based on event outcome
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
@@ -113,15 +115,12 @@ public class GameManager : MonoBehaviour
         switch (PersonalityDemand)
         {
             case 1:
-                //CHECK IF HERO IS BRAVE
                 if (PlayerClass.PlayerInstance.IsPersonalityBrave())
                 {
                     DemandsMet += 1;
                 }
                 break;
             case 2:
-                //CHECK IF HERO IS COWARDLY
-                //etc etc.
                 if (PlayerClass.PlayerInstance.IsPersonalityCowardly())
                 {
                     DemandsMet += 1;
@@ -160,7 +159,6 @@ public class GameManager : MonoBehaviour
             case 8:
                 if (!PlayerClass.PlayerInstance.IsGoodHigherThanEvil())
                 {
-                    //IF PLAYER IS EVIL
                     DemandsMet += 1;
                 }
                 break;
@@ -172,36 +170,40 @@ public class GameManager : MonoBehaviour
                 if(false){
                     //check against some of the other stuff
                 }
+                break;
         }
 
         switch (AchievementDemand)
         {
             case 1:
-                if (CombatSuccesses)
+                if (CombatSuccesses > 3)
                 {
                     //IF PLAYER IS EVIL
                     DemandsMet += 1;
                 }
                 break;
             case 2:
-                if (CombatDefeats)
+                if (CombatDefeats > 1)
                 {
                     //IF PLAYER IS EVIL
                     DemandsMet += 1;
                 }
                 break;
             case 3:
-                if (EventSuccesses)
+                if (EventSuccesses > 3)
                     {
                         //IF PLAYER IS EVIL
                         DemandsMet += 1;
                     }
+                                        break;
+
             case 4:
-                if (EventDefeats)
+                if (EventDefeats > 1)
                     {
                         //IF PLAYER IS EVIL
                         DemandsMet += 1;
                     }
+                    break;
         }
 
         Debug.Log(DemandsMet.ToString());
