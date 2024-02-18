@@ -31,12 +31,10 @@ public class EventDisplay : MonoBehaviour
         bool encounterSuccess = GameManager.Instance.ResolvePlayerRoll(optionEvent);
         if (encounterSuccess){
             optionEvent.EventSuccess();
-            Debug.LogFormat("Wow! you won!");
             // _playerWins = true;
         }
         else{
             optionEvent.EventFailure();
-            Debug.LogFormat("Oh no! You lost!");
             // _playerWins = false;
         }
         

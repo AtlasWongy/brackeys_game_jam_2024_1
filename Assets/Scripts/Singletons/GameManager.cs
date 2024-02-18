@@ -17,6 +17,39 @@ namespace Singletons
         [SerializeField] private NpcInteraction npcPrefab;
         [SerializeField] private Merchant.Merchant merchantPrefab;
         [SerializeField] private GameObject dialogPrompt;
+
+        private int? _PersonalityDemand = null;
+        public int? PersonalityDemand
+        {
+            get { return _PersonalityDemand; }
+            set { if (_PersonalityDemand == null) _PersonalityDemand = value; }
+        }
+
+        private int? _AttributeDemand = null;
+        public int? AttributeDemand
+        {
+            get { return _AttributeDemand; }
+            set { if (_AttributeDemand == null) _AttributeDemand = value; }
+        }
+
+        private int? _AchievementDemand = null;
+        public int? AchievementDemand
+        {
+            get { return _AchievementDemand; }
+            set { if (_AchievementDemand == null) _AchievementDemand = value; }
+        }
+
+        //TRACKERS FOR GAME DATA
+
+        private int CombatSuccesses;
+        private int CombatDefeats;
+        private int EventSuccesses;
+        private int EventDefeats;
+
+        private int DemandsMet = 0;
+
+        private int DoorCounter = 0;
+
         
         public Button[] buttons;
         public static GameManager Instance { get; private set; }
@@ -40,6 +73,9 @@ namespace Singletons
                 return;
             }
             DontDestroyOnLoad(gameObject);
+
+            PrincessStartGenerate();
+
         }
 
         private void Update()
@@ -63,6 +99,85 @@ namespace Singletons
                     }
                 }
             }
+        }
+
+        public void PrincessStartGenerate()
+        {
+            PersonalityDemand = UnityEngine.Random.Range(1, 3);
+            AttributeDemand = UnityEngine.Random.Range(1, 3);
+            AchievementDemand = UnityEngine.Random.Range(1, 3);
+
+            //THIS SHOULD BE 11, 3 NOW FOR TESTING
+
+            Debug.LogFormat("{0},{1},{2} are the demands", PersonalityDemand, AttributeDemand, AchievementDemand);
+
+
+        }
+
+        private bool PrincessPersonalityCheck(int demand){
+            switch(demand){
+                case 1:
+                    return(PlayerClass.PlayerInstance.IsPersonalityBrave());
+                case 2:
+                    return(PlayerClass.PlayerInstance.IsPersonalityCowardly());
+                case 3:
+                    return(PlayerClass.PlayerInstance.IsPersonalityCunning());
+                case 4:
+                    return(PlayerClass.PlayerInstance.IsPersonalityDull());
+                case 5:
+                    return(PlayerClass.PlayerInstance.IsPersonalityNoble());
+                case 6:
+                    return(PlayerClass.PlayerInstance.IsPersonalitySelfish());
+                case 7:
+                    return(PlayerClass.PlayerInstance.IsGoodHigherThanEvil());
+                case 8:
+                    return(!PlayerClass.PlayerInstance.IsGoodHigherThanEvil());
+
+            }
+        }
+
+        private bool PrincessAttributeCheck(int demand)
+        {
+            switch(demand){
+                case 1:
+                    return (PlayerClass.PlayerInstance.GetGold()>10);
+                    
+            }
+        }
+
+        private bool PrincessAchievementCheck(int demand)
+        {
+            case 1:
+                return (CombatSuccesses > 3);
+
+            case 2:
+                return (CombatDefeats > 1);
+
+            case 3:
+                return (EventSuccesses > 3);
+
+            case 4:
+                return (EventDefeats > 1);
+        }
+
+        private bool PrincessEndCheck()
+        {
+            DemandsMet = 0;
+            //need 2 out of 3 right to win the game
+
+            if(PrincessPersonalityCheck(PersonalityDemand)){
+                DemandsMet += 1;
+            }
+
+            if(PrincessAttributeCheck(AttributeDemand)){
+                DemandsMet += 1;
+            }
+
+            if(PrincessAchievementCheck(AchievementDemand)){
+                DemandsMet += 1;
+            }
+            Debug.Log(DemandsMet.ToString());
+            return(DemandsMet>=2);
         }
 
         public void LoadPlayer()
@@ -110,6 +225,29 @@ namespace Singletons
             PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
             _optionEvent = optionEvent;
 
+            if (PlayerClass.PlayerInstance.GetStats().Health <= 0)
+            {
+                Debug.Log("You died! Game over.");
+                //Show game over screen, if applicable
+            }
+
+            DoorCounter += 1;
+
+            if (DoorCounter == 1) //NUMBER OF DOORS IN THE GAME
+            {   
+                //Are we visually displaying the princess somehow? Here's where we are doing it if we are.
+                if(PrincessEndCheck())
+                {
+                    Debug.Log("The Princess accepts you! You win.");
+                }
+                else
+                {
+                    Debug.Log("The Princess rejected you! Game over.");
+                }
+            }
+
+            
+
             // if (_optionEvent.eventType == "Combat")
             // {
             //     playerWinsEncounter = playerWins;
@@ -128,13 +266,7 @@ namespace Singletons
             UIStatsManager.UIStatsInstance.updateText("Gold Count", "Gold Count: " +Player.PlayerClass.PlayerInstance.GetGold().ToString());
 
         }
-    
-        // Method to check the win condition
-        private bool CheckWinCondition()
-        {
-            return Player.PlayerClass.PlayerInstance.GetStats().Good > Player.PlayerClass.PlayerInstance.GetStats().Evil;
-        }
-    
+        
         public bool ResolvePlayerRoll(OptionEvent optionEvent){
             return(Player.PlayerClass.PlayerInstance.DieRoll(optionEvent));
             //return true;
@@ -183,3 +315,4 @@ namespace Singletons
     
     }
 }
+
