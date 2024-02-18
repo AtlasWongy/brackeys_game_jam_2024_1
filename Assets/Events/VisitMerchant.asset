@@ -43,4 +43,7 @@ MonoBehaviour:
   runTimeAnimatorController: {fileID: 0}
   animationSpeed: 0
   loop: 1
-  dialog: Won't take your Gold... But YOUR SOUL!!!!
+  dialog:
+  - I won't take your gold BUT YOUR SOUL!!
+  - Yucks. Even I don't want your dirty soul...
+  eventOutCome: 1

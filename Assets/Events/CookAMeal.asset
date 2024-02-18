@@ -12,21 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
   m_Name: CookAMeal
   m_EditorClassIdentifier: 
-  optionName: 
-  eventType: 
-  description: 
+  optionName: Cook A Meal
+  eventType: Random
+  description: A nice campfire.... and some game you caught. Time to rest
   stats:
     Health: 0
     Wits: 0
     Guts: 0
-    Heart: 0
+    Heart: -1
+    Good: -1
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: -1
+    Guts: -1
+    Heart: 1
     Good: 0
     Evil: 0
-  statList: []
-  rewardList: []
-  sprite: {fileID: 0}
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: -1
+    Good: -1
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 5f9999bd88e38ec40b3a59750776e12a, type: 2}
+  - {fileID: 11400000, guid: ff44240d50583fd48b829bf91cd529eb, type: 2}
+  sprite: {fileID: 983486661, guid: 60986db75fd1f424eb3dd22c72f8af41, type: 3}
   animationClipList: []
   runTimeAnimatorController: {fileID: 0}
   animationSpeed: 0
   loop: 1
-  dialog: 
+  dialog:
+  - Looks like a good meal is cooked
+  - Oh my... Perhaps I will starve for awhile.....
+  eventOutCome: 1

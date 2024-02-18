@@ -32,14 +32,14 @@ public class EventDisplay : MonoBehaviour
         if (encounterSuccess){
             optionEvent.EventSuccess();
             Debug.LogFormat("Wow! you won!");
-            _playerWins = true;
+            // _playerWins = true;
         }
         else{
             optionEvent.EventFailure();
             Debug.LogFormat("Oh no! You lost!");
-            _playerWins = false;
+            // _playerWins = false;
         }
         
-        GameManager.Instance.HandleEventOutcome(optionEvent, _playerWins);
+        GameManager.Instance.HandleEventOutcome(optionEvent);
     }
 }

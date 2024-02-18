@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0cd9bfa5cb2596b47977308559fa5520, type: 3}
-  m_Name: CookAMealWon
+  m_Name: FightMimicWon
   m_EditorClassIdentifier: 
   rewards:
-  - rewardType: 
-    item: 
-    quantity: 0
+  - rewardType: Currency
+    item: Gold
+    quantity: 10
     description: 

@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295870367e7be7048b532d51fa4ecf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionEvent: {fileID: 11400000, guid: e618f160b85203a49bf1d4706b2902f0, type: 2}
+  optionEvent: {fileID: 11400000, guid: 90f59d19bfcdad4458ea031f49d5fe33, type: 2}
   eventButton: {fileID: 732800808}
 --- !u!114 &732800808
 MonoBehaviour:
@@ -3100,7 +3100,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 295870367e7be7048b532d51fa4ecf1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  optionEvent: {fileID: 11400000, guid: 4938c4ee132860845a224e1c5293891b, type: 2}
+  optionEvent: {fileID: 11400000, guid: 2019872fccb4909488cccc9e4fd5af8b, type: 2}
   eventButton: {fileID: 1643502959}
 --- !u!114 &1643502959
 MonoBehaviour:
@@ -3801,13 +3801,14 @@ MonoBehaviour:
   playerPrefab: {fileID: -2280893784269672642, guid: 54c304c8d54f3ab4cb3a17724bed9da7, type: 3}
   enemyPrefab: {fileID: 1180266945492417491, guid: 4c4ec57ddeaf1074e9d0e85fbc701b7d, type: 3}
   npcPrefab: {fileID: 1281740615265073546, guid: 5a5940b5d3fb3c24ea44821b2f432864, type: 3}
-  _merchantPrefab: {fileID: 7986490897635228080, guid: 355c4e4377ae06c4dbd845bac691fd18, type: 3}
+  merchantPrefab: {fileID: 7986490897635228080, guid: 355c4e4377ae06c4dbd845bac691fd18, type: 3}
   dialogPrompt: {fileID: 1759913371}
   buttons:
   - {fileID: 732800808}
   - {fileID: 1643502959}
   - {fileID: 1772449309}
   playerWinsEncounter: 0
+  _optionEvent: {fileID: 0}
 --- !u!1 &1855058350
 GameObject:
   m_ObjectHideFlags: 0

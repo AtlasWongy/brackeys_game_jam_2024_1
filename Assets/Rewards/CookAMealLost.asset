@@ -12,4 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cd9bfa5cb2596b47977308559fa5520, type: 3}
   m_Name: CookAMealLost
   m_EditorClassIdentifier: 
-  rewards: []
+  rewards:
+  - rewardType: 
+    item: 
+    quantity: 0
+    description: 

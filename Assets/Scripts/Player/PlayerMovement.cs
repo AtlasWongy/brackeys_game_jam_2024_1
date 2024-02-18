@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using NPC;
+using Options;
 using Singletons;
 using UnityEngine;
 
@@ -16,7 +17,6 @@ namespace Player
         private bool _isMoving;
         
         public static PlayerMovement Instance { get; private set; }
-        public bool _playerWins;
         
         private void Awake()
         {
@@ -39,7 +39,6 @@ namespace Player
             
             if (_enemy != null)
             {
-                _playerWins = GameManager.Instance.playerWinsEncounter;
                 Instance._isMoving = true;
             } 
             else if (_npcInteraction != null)
@@ -69,7 +68,6 @@ namespace Player
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            Debug.Log($"The player win the encounter: {_playerWins} from ${other.name}");
             if (other != null)
             {
                 Instance._isMoving = false;
@@ -82,7 +80,7 @@ namespace Player
             } 
             else if (other.CompareTag("Enemy"))
             {
-                if (_playerWins)
+                if (GameManager.Instance._optionEvent.eventOutCome == OptionEvent.EventOutCome.Success)
                 {
                     _animator.SetTrigger("startAttacking");
                     StartCoroutine(WaitForAnimationEnd());
@@ -109,6 +107,7 @@ namespace Player
         {
             yield return new WaitForSeconds(1.25f);
             _animator.SetTrigger("stopAttacking");
+            AttackTheEnemy();
             _animator.SetBool("isMoving", false);
         }
 

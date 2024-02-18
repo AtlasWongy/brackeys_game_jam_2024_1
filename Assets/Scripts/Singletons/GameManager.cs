@@ -22,7 +22,7 @@ namespace Singletons
         public static GameManager Instance { get; private set; }
         public bool playerWinsEncounter;
         public static Action OnDestroySignal;
-        private OptionEvent _optionEvent;
+        public OptionEvent _optionEvent;
         private PlayerMovement _player;
         private string _eventType;
         private NpcInteraction _npc;
@@ -100,7 +100,7 @@ namespace Singletons
             }
         }
 
-        public void HandleEventOutcome(OptionEvent optionEvent, bool playerWins)
+        public void HandleEventOutcome(OptionEvent optionEvent)
         {
             DisableButtons();
             
@@ -110,10 +110,10 @@ namespace Singletons
             PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
             _optionEvent = optionEvent;
 
-            if (_optionEvent.eventType == "Combat")
-            {
-                playerWinsEncounter = playerWins;
-            }
+            // if (_optionEvent.eventType == "Combat")
+            // {
+            //     playerWinsEncounter = playerWins;
+            // }
         }
 
         // Method to update UI stat text
@@ -160,7 +160,15 @@ namespace Singletons
         public void HandleDialog()
         {
             dialogPrompt.SetActive(true);
-            dialogPrompt.GetComponentInChildren<TextMeshProUGUI>().text = _optionEvent.dialog;
+            if (GameManager.Instance._optionEvent.eventOutCome == OptionEvent.EventOutCome.Success)
+            {
+                dialogPrompt.GetComponentInChildren<TextMeshProUGUI>().text = _optionEvent.dialog[0];
+            }
+            else
+            {
+                dialogPrompt.GetComponentInChildren<TextMeshProUGUI>().text = _optionEvent.dialog[1];
+            }
+            
             StartCoroutine(CloseTheDialogPrompt());
         }
 
