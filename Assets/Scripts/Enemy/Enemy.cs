@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Singletons;
 using UnityEngine;
 
 namespace Enemy
@@ -14,6 +15,12 @@ namespace Enemy
             _door = FindObjectOfType<Door.Door>();
         }
 
+        public void AttackPlayer()
+        {
+            GetComponent<Animator>().Play("Goblin_Attack");
+            StartCoroutine(WaitForAnimationEnd());
+        }
+
         public void RemoveSelf()
         {
             Destroy(gameObject);
@@ -24,6 +31,12 @@ namespace Enemy
             GameManager.Instance.EnableButtons();
             GameManager.Instance.UpdateUIStatText();
             _door.DropDoor();
+        }
+        
+        IEnumerator WaitForAnimationEnd()
+        {
+            yield return new WaitForSeconds(1.25f);
+           RemoveSelf();
         }
     }
 }

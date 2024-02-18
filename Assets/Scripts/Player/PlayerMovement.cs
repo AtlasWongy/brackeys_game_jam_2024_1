@@ -1,6 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using NPC;
+using Options;
+using Singletons;
 using UnityEngine;
 
 namespace Player
@@ -9,6 +12,8 @@ namespace Player
     {
         private Animator _animator;
         private Enemy.Enemy _enemy;
+        private NpcInteraction _npcInteraction;
+        private Merchant.Merchant _merchant;
         private bool _isMoving;
         
         public static PlayerMovement Instance { get; private set; }
@@ -29,7 +34,18 @@ namespace Player
         {
             _animator = GetComponent<Animator>();
             _enemy = FindObjectOfType<Enemy.Enemy>();
+            _npcInteraction = FindObjectOfType<NpcInteraction>();
+            _merchant = FindObjectOfType<Merchant.Merchant>();
+            
             if (_enemy != null)
+            {
+                Instance._isMoving = true;
+            } 
+            else if (_npcInteraction != null)
+            {
+                Instance._isMoving = true;
+            }
+            else if (_merchant != null)
             {
                 Instance._isMoving = true;
             }
@@ -64,8 +80,26 @@ namespace Player
             } 
             else if (other.CompareTag("Enemy"))
             {
-                _animator.SetTrigger("startAttacking");
-                StartCoroutine(WaitForAnimationEnd());
+                if (GameManager.Instance._optionEvent.eventOutCome == OptionEvent.EventOutCome.Success)
+                {
+                    _animator.SetTrigger("startAttacking");
+                    StartCoroutine(WaitForAnimationEnd());
+                }
+                else
+                {
+                    _animator.SetBool("isMoving", false);
+                    _enemy.AttackPlayer();
+                }
+            }
+            else if (other.CompareTag("NPC"))
+            {
+                _animator.SetBool("isMoving", false);
+                _npcInteraction.InteractWithPlayer();
+            }
+            else if (other.CompareTag("Merchant"))
+            {
+                _animator.SetBool("isMoving", false);
+                _merchant.InteractWIthPlayer();
             }
         }
 
@@ -73,6 +107,7 @@ namespace Player
         {
             yield return new WaitForSeconds(1.25f);
             _animator.SetTrigger("stopAttacking");
+            AttackTheEnemy();
             _animator.SetBool("isMoving", false);
         }
 

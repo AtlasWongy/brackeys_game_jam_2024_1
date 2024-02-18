@@ -1,0 +1,50 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: FightGolem
+  m_EditorClassIdentifier: 
+  optionName: Fight Sand Golem
+  eventType: Combat
+  description: Soil and earth trembles beneath your feet
+  stats:
+    Health: 0
+    Wits: 1
+    Guts: 2
+    Heart: 0
+    Good: 1
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 1
+    Guts: 2
+    Heart: 0
+    Good: 1
+    Evil: 0
+  - Health: -2
+    Wits: 0
+    Guts: -2
+    Heart: -1
+    Good: 0
+    Evil: 2
+  rewardList:
+  - {fileID: 11400000, guid: d754b39b8966830459da1b941af850b9, type: 2}
+  - {fileID: 11400000, guid: 800fa93d73e21c04ea006b3454d1182e, type: 2}
+  sprite: {fileID: 1276691915, guid: f71a858a21eff9146960c2acf8c63612, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: 001dae9934ce9164bbeb664fa7478abb, type: 2}
+  - {fileID: 7400000, guid: 33a0a2b9f0b532f4bb4b5574e56df632, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: 2d57ced7744f09740adcff4ef883f559, type: 2}
+  animationSpeed: 0
+  loop: 1
+  dialog:
+  - 
+  eventOutCome: 0

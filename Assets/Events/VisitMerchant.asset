@@ -12,11 +12,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
   m_Name: VisitMerchant
   m_EditorClassIdentifier: 
-  optionName: Visit Merchant
+  optionName: Visit Dark Merchant
   eventType: Shop
-  description: You hear coins dropping on the floor...
-  health: 0
-  wits: 0
-  guts: 0
-  heart: 0
-  Reward: []
+  description: You hear coins dropping on the floor.... and some laughter..
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: -3
+    Wits: 3
+    Guts: -3
+    Heart: 3
+    Good: -3
+    Evil: 3
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 3ff0b2ffc214e104c92ff1cfbe3c3d7d, type: 2}
+  - {fileID: 11400000, guid: 110d88f8e7904824e94658e02d5fd38e, type: 2}
+  sprite: {fileID: 1542023614, guid: bb5343571dba10644ab40049a669cb97, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog:
+  - I won't take your gold BUT YOUR SOUL!!
+  - Yucks. Even I don't want your dirty soul...
+  eventOutCome: 1
