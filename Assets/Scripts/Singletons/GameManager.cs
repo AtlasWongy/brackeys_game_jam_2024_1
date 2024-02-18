@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NPC;
 using Options;
 using Player;
@@ -27,7 +28,12 @@ namespace Singletons
         private string _eventType;
         private NpcInteraction _npc;
         private Merchant.Merchant _merchant;
-    
+        private Enemy.Enemy enemy;
+
+        private bool loadedOnce = false;
+
+        private List<string> UsedEventNames = new List<string>();
+
         private void Awake()
         {
             if (Instance == null)
@@ -52,15 +58,27 @@ namespace Singletons
                     if (_optionEvent.eventType == "Combat")
                     {
                         LoadEnemy();
+                        loadedOnce = true;
                     }
                     else if (_optionEvent.eventType == "Random")
                     {
                         LoadNpc();
+                        loadedOnce = true;
                     }
                     else if (_optionEvent.eventType == "Shop")
                     {
                         LoadMerchant();
+                        loadedOnce = true;
                     }
+                }
+            }
+
+            if (SceneManager.GetActiveScene().name == "Repeat")
+            {
+                if ((enemy == null || _npc == null || _merchant == null) && loadedOnce)
+                {
+                    ReloadButtons();
+                    loadedOnce = false;
                 }
             }
         }
@@ -74,7 +92,7 @@ namespace Singletons
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                Enemy.Enemy enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
+                enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
                 enemy.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
                 enemy.GetComponent<Animator>().runtimeAnimatorController = _optionEvent.runTimeAnimatorController;
                 enemy.GetComponent<Animator>().Play("Goblin_Idle");
@@ -180,6 +198,34 @@ namespace Singletons
             Instance.UpdateUIStatText();
             OnDestroySignal.Invoke();
         }
-    
+
+
+        public List<string> TrackEventOptions(String eventName)
+        {
+            if (eventName != null)
+            {
+                UsedEventNames.Add(eventName);
+            }
+            
+            return UsedEventNames;
+        }
+
+        // Method to destroy the current game object and reload it
+        public void ReloadButtons()
+        {
+            foreach (var button in buttons)
+            {
+                // Destroy the current instance
+                if (button != null)
+                {
+                    Destroy(button);
+                }
+
+                // Instantiate a new instance of the prefab
+                Instantiate(button, transform.position, transform.rotation);
+            }
+         
+        }
+
     }
 }
