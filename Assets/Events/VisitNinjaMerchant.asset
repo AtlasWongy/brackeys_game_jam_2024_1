@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
-  m_Name: VisitForestRanger
+  m_Name: VisitNinjaMerchant
   m_EditorClassIdentifier: 
-  optionName: Visit Forest Ranger
+  optionName: Visit Ninja Merchant
   eventType: Shop
-  description: A friendly face finally..... wonder she has
+  description: I feel shadows lurking around me
   stats:
     Health: 0
     Wits: 0
@@ -24,26 +24,24 @@ MonoBehaviour:
     Evil: 0
   statList:
   - Health: 0
-    Wits: 0
-    Guts: 0
-    Heart: 3
-    Good: 3
+    Wits: 3
+    Guts: 3
+    Heart: 2
+    Good: 0
     Evil: 0
   - Health: 0
-    Wits: 0
-    Guts: 0
-    Heart: 0
+    Wits: 3
+    Guts: 3
+    Heart: 2
     Good: 0
     Evil: 0
   rewardList:
-  - {fileID: 11400000, guid: 243bbe6f5ffdb294b99007c190d76bf5, type: 2}
-  - {fileID: 11400000, guid: 81d10f15dab51554eb6a25f96bcc49a7, type: 2}
-  sprite: {fileID: -1044552233, guid: 86f9d5208aa6a1b4aa6d10b7133fa30a, type: 3}
+  - {fileID: 11400000, guid: 20d35b853164ce541b736d0902b69e2c, type: 2}
+  - {fileID: 11400000, guid: 54faeabd607c9354abc44d19ca0f1586, type: 2}
+  sprite: {fileID: 478292106, guid: 9119f3ae217708d4083c3de7251480ef, type: 3}
   animationClipList: []
   runTimeAnimatorController: {fileID: 0}
   animationSpeed: 0
-  loop: 0
-  dialog:
-  - Hopefully you got what you need!
-  - Apologies. I belive you do not have adequate currency to purchase my wares
+  loop: 1
+  dialog: []
   eventOutCome: 0

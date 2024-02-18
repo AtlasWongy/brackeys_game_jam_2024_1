@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
-  m_Name: VisitForestRanger
+  m_Name: VisitForeignWarrior
   m_EditorClassIdentifier: 
-  optionName: Visit Forest Ranger
+  optionName: Visting Foreign Warrior
   eventType: Shop
-  description: A friendly face finally..... wonder she has
+  description: A mystery presence lingers in the forest
   stats:
     Health: 0
     Wits: 0
@@ -25,10 +25,10 @@ MonoBehaviour:
   statList:
   - Health: 0
     Wits: 0
-    Guts: 0
-    Heart: 3
-    Good: 3
-    Evil: 0
+    Guts: 3
+    Heart: 4
+    Good: 0
+    Evil: -2
   - Health: 0
     Wits: 0
     Guts: 0
@@ -36,14 +36,14 @@ MonoBehaviour:
     Good: 0
     Evil: 0
   rewardList:
-  - {fileID: 11400000, guid: 243bbe6f5ffdb294b99007c190d76bf5, type: 2}
-  - {fileID: 11400000, guid: 81d10f15dab51554eb6a25f96bcc49a7, type: 2}
-  sprite: {fileID: -1044552233, guid: 86f9d5208aa6a1b4aa6d10b7133fa30a, type: 3}
+  - {fileID: 11400000, guid: 1cb1759c902f4694dbee09bfa7f66bc0, type: 2}
+  - {fileID: 11400000, guid: 46cb49c33b2044b4089b886448f3fc19, type: 2}
+  sprite: {fileID: 413868339, guid: 47c282940bd83ba4aa65c5b0705aa9e9, type: 3}
   animationClipList: []
   runTimeAnimatorController: {fileID: 0}
   animationSpeed: 0
-  loop: 0
+  loop: 1
   dialog:
-  - Hopefully you got what you need!
-  - Apologies. I belive you do not have adequate currency to purchase my wares
+  - Well bought Warrior. May my wares bring you strength
+  - Perhaps... another time
   eventOutCome: 0

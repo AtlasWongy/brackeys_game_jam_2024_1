@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
-  m_Name: VisitForestRanger
+  m_Name: VisitRoyalMerchant
   m_EditorClassIdentifier: 
-  optionName: Visit Forest Ranger
+  optionName: Visit Royal Merchant
   eventType: Shop
-  description: A friendly face finally..... wonder she has
+  description: A parade? There is a crowd follow by what seems to be royalty
   stats:
     Health: 0
     Wits: 0
@@ -26,9 +26,9 @@ MonoBehaviour:
   - Health: 0
     Wits: 0
     Guts: 0
-    Heart: 3
-    Good: 3
-    Evil: 0
+    Heart: 4
+    Good: 2
+    Evil: -1
   - Health: 0
     Wits: 0
     Guts: 0
@@ -36,14 +36,12 @@ MonoBehaviour:
     Good: 0
     Evil: 0
   rewardList:
-  - {fileID: 11400000, guid: 243bbe6f5ffdb294b99007c190d76bf5, type: 2}
-  - {fileID: 11400000, guid: 81d10f15dab51554eb6a25f96bcc49a7, type: 2}
-  sprite: {fileID: -1044552233, guid: 86f9d5208aa6a1b4aa6d10b7133fa30a, type: 3}
+  - {fileID: 0}
+  - {fileID: 0}
+  sprite: {fileID: 0}
   animationClipList: []
   runTimeAnimatorController: {fileID: 0}
   animationSpeed: 0
-  loop: 0
-  dialog:
-  - Hopefully you got what you need!
-  - Apologies. I belive you do not have adequate currency to purchase my wares
+  loop: 1
+  dialog: []
   eventOutCome: 0
