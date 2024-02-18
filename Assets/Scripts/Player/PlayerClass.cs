@@ -88,6 +88,26 @@ namespace Player
             return highestStat > dieRoll;
         }
 
+        public void HandleMerchant(string merchant){
+            switch(merchant){
+                case("good"): {
+                    playerStats.AdjustStats(0, 1, 1, 1, 1, 0);
+                    break;
+                }
+                case("dark"): {
+                    int randomNum = UnityEngine.Random.Range(1,4);
+                    switch(randomNum){
+                        case 1: playerStats.AdjustStats(0, 3, -1, -1, 0, 2); break;
+                        case 2: playerStats.AdjustStats(0, -1, 3, -1, 0, 2); break;
+                        case 3: playerStats.AdjustStats(0, -1, -1, 3, 0, 2); break;
+                        default: break;
+                    }
+                    break;
+                }
+                default: break;
+            }
+        }
+
         public bool IsGoodHigherThanEvil()
         {
             return playerStats.Good > playerStats.Evil;

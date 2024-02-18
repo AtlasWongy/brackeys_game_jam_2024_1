@@ -114,7 +114,7 @@ namespace Singletons
 
         }
 
-        private bool PrincessPersonalityCheck(int demand){
+        private bool PrincessPersonalityCheck(int? demand){
             switch(demand){
                 case 1:
                     return(PlayerClass.PlayerInstance.IsPersonalityBrave());
@@ -132,21 +132,27 @@ namespace Singletons
                     return(PlayerClass.PlayerInstance.IsGoodHigherThanEvil());
                 case 8:
                     return(!PlayerClass.PlayerInstance.IsGoodHigherThanEvil());
+                default:
+                    return false;
 
             }
         }
 
-        private bool PrincessAttributeCheck(int demand)
+        private bool PrincessAttributeCheck(int? demand)
         {
             switch(demand){
                 case 1:
                     return (PlayerClass.PlayerInstance.GetGold()>10);
+                default:
+                    return false;
                     
             }
         }
 
-        private bool PrincessAchievementCheck(int demand)
+        private bool PrincessAchievementCheck(int? demand)
         {
+            switch(demand)
+            {
             case 1:
                 return (CombatSuccesses > 3);
 
@@ -158,6 +164,9 @@ namespace Singletons
 
             case 4:
                 return (EventDefeats > 1);
+            default:
+                    return false;
+            }
         }
 
         private bool PrincessEndCheck()
@@ -223,6 +232,12 @@ namespace Singletons
 
             PlayerClass.PlayerInstance.AdjustStats(optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil);
             PlayerClass.PlayerInstance.AdjustGold(optionEvent.rewardsObtained.Item2);
+
+            if(optionEvent.merchantType != null)
+            {
+                PlayerClass.PlayerInstance.HandleMerchant(optionEvent.merchantType);
+            }
+
             _optionEvent = optionEvent;
 
             if (PlayerClass.PlayerInstance.GetStats().Health <= 0)

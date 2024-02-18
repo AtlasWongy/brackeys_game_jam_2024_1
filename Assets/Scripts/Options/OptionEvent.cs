@@ -33,6 +33,8 @@ namespace Options
         public string[] dialog;
         public EventOutCome eventOutCome;
 
+        public string? merchantType;
+
         public void EventSuccess()
         {
             stats = statList[0];
@@ -62,6 +64,9 @@ namespace Options
                     else if (reward.rewardType.ToLower() == "currency")
                     {
                         totalGold += reward.quantity;
+                    }
+                    else if (reward.rewardType.ToLower() == "merchant"){
+                        merchantType = reward.description;
                     }
                 }
             }
