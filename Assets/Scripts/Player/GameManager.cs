@@ -11,6 +11,38 @@ public class GameManager : MonoBehaviour
     // Static instance of GameManager which allows it to be accessed by any other script.
     public static GameManager Instance { get; private set; }
 
+    
+
+    private int? _PersonalityDemand = null;
+    public int? PersonalityDemand{
+        get{return _PersonalityDemand;}
+        set{ if (_PersonalityDemand==null) _PersonalityDemand = value;}
+    }
+
+    private int? _AttributeDemand = null;
+    public int? AttributeDemand{
+        get{return _AttributeDemand;}
+        set{ if (_AttributeDemand==null) _AttributeDemand = value;}
+    }
+
+    private int? _AchievementDemand = null;
+    public int? AchievementDemand{
+        get{return _AchievementDemand;}
+        set{ if (_AchievementDemand==null) _AchievementDemand = value;}
+    }
+
+    //TRACKERS FOR GAME DATA
+
+    private int CombatSuccesses;
+    private int CombatDefeats;
+    private int EventSuccesses;
+    private int EventDefeats;
+
+    private int DemandsMet = 0;
+
+    private int DoorCounter = 0;
+
+
     private void Awake()
     {
         // Singleton pattern implementation.
@@ -31,6 +63,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         //UpdateUIStatText();
+        PrincessStartGenerate();
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
@@ -43,11 +76,61 @@ public class GameManager : MonoBehaviour
         // Update UI stat text
         UpdateUIStatText();
 
-        // Check win condition
-        if (CheckWinCondition())
-        {
-            Debug.Log("You Won! Game over.");
+        DoorCounter +=1;
+        if(DoorCounter==1){
+            PrincessEndCheck();
         }
+
+        // Check win condition
+        //if (CheckWinCondition())
+        //{
+        //    Debug.Log("You Won! Game over.");
+        //}
+    }
+
+    public void PrincessStartGenerate(){
+        PersonalityDemand = UnityEngine.Random.Range(1,3);
+        AttributeDemand = UnityEngine.Random.Range(1,3);
+        AchievementDemand = UnityEngine.Random.Range(1,3);
+
+        //THIS SHOULD BE 11, 3 NOW FOR TESTING
+
+        Debug.LogFormat("{0},{1},{2} are the demands",PersonalityDemand,AttributeDemand,AchievementDemand);
+
+      
+    }
+
+    public void PrincessEndCheck(){
+        DemandsMet = 0;
+        //need 2 out of 3 right to win the game
+
+        switch(PersonalityDemand){
+            case 1:
+                //CHECK IF HERO IS BRAVE
+                if(PlayerClass.PlayerInstance.IsPersonalityBrave()){
+                    DemandsMet += 1;
+                }
+                break;
+            case 2:
+                //CHECK IF HERO IS COWARDLY
+                //etc etc.
+                if(PlayerClass.PlayerInstance.IsPersonalityCowardly()){
+                    DemandsMet += 1;
+                }
+                break;
+        }
+        
+        switch(AchievementDemand){
+            case 1:
+                //DONT KILL TOO MANY THINGS
+                break;
+            case 2:
+                //DONT DIE TOO MANY TIMES
+                // etc. etc
+                break;
+        }
+
+        Debug.Log(DemandsMet.ToString());
     }
 
     // Method to update UI stat text

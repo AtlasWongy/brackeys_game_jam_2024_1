@@ -75,4 +75,12 @@ public class PlayerClass : MonoBehaviour
     bool IsGoodHigherThanEvil(){
         return playerStats.Good > playerStats.Evil;
     }
+
+    public bool IsPersonalityBrave(){
+        return playerStats.Guts > 7;
+    }
+
+    public bool IsPersonalityCowardly(){
+        return playerStats.Guts <= 3;
+    }
 }
