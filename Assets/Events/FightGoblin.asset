@@ -16,10 +16,32 @@ MonoBehaviour:
   eventType: Combat
   description: A wretched smell fills up your nose......
   stats:
-    Health: -2
+    Health: -1
+    Wits: 0
+    Guts: -1
+    Heart: 0
+    Good: 0
+    Evil: -1
+  statList:
+  - Health: 0
     Wits: 0
     Guts: 1
-    Heart: -2
-    Good: 1
+    Heart: 0
+    Good: 0
     Evil: 0
-  rewardList: {fileID: 11400000, guid: fa4755f50115bbe4f98030b6e4770e93, type: 2}
+  - Health: -1
+    Wits: 0
+    Guts: -1
+    Heart: 0
+    Good: 0
+    Evil: -1
+  rewardList:
+  - {fileID: 11400000, guid: fa4755f50115bbe4f98030b6e4770e93, type: 2}
+  - {fileID: 11400000, guid: c0298798d2605a8429bc8b952413585a, type: 2}
+  sprite: {fileID: -1915503865, guid: 7b61570e75788394a81b873dc50bcdb4, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: e5f9306b365d9e943966d50070313999, type: 2}
+  - {fileID: 7400000, guid: ebcb9046d31aa824e8ad3b029e110ba7, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: 3d9ecd19a4085ca4d92cc7562107e436, type: 2}
+  animationSpeed: 1
+  loop: 1

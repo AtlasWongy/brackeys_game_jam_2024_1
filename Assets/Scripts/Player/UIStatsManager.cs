@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Singletons;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -43,7 +44,7 @@ public class UIStatsManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        // GameManager.Instance.UpdateUIStatText();
     }
 
     public void updateText(string StatName, string newText){
