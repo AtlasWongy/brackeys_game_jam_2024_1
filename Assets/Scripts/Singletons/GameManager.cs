@@ -30,9 +30,9 @@ namespace Singletons
         private Merchant.Merchant _merchant;
         private Enemy.Enemy enemy;
 
-        private bool loadedOnce = false;
-
         private List<string> UsedEventNames = new List<string>();
+        private OptionEvent[] optionEventList;
+        public string optionEventFolder;
 
         private void Awake()
         {
@@ -46,6 +46,9 @@ namespace Singletons
                 return;
             }
             DontDestroyOnLoad(gameObject);
+
+            optionEventList = Resources.LoadAll<OptionEvent>(optionEventFolder);
+
         }
 
         private void Update()
@@ -58,29 +61,18 @@ namespace Singletons
                     if (_optionEvent.eventType == "Combat")
                     {
                         LoadEnemy();
-                        loadedOnce = true;
                     }
                     else if (_optionEvent.eventType == "Random")
                     {
                         LoadNpc();
-                        loadedOnce = true;
                     }
                     else if (_optionEvent.eventType == "Shop")
                     {
                         LoadMerchant();
-                        loadedOnce = true;
                     }
                 }
             }
 
-            if (SceneManager.GetActiveScene().name == "Repeat")
-            {
-                if ((enemy == null || _npc == null || _merchant == null) && loadedOnce)
-                {
-                    ReloadButtons();
-                    loadedOnce = false;
-                }
-            }
         }
 
         public void LoadPlayer()
@@ -210,22 +202,42 @@ namespace Singletons
             return UsedEventNames;
         }
 
-        // Method to destroy the current game object and reload it
-        public void ReloadButtons()
+        public void LoadEvent(Button eventButton, OptionEvent optionEvent, TextMeshProUGUI _eventDesc)
         {
-            foreach (var button in buttons)
-            {
-                // Destroy the current instance
-                if (button != null)
-                {
-                    Destroy(button);
-                }
+            eventButton.GetComponent<EventDisplay>().optionEvent = getOptionEvent();
 
-                // Instantiate a new instance of the prefab
-                Instantiate(button, transform.position, transform.rotation);
-            }
-         
+            _eventDesc = eventButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            _eventDesc.text = optionEvent.description;
         }
 
+        private OptionEvent getOptionEvent()
+        {
+            Debug.Log(optionEventList.Length);
+            if (optionEventList.Length > 0)
+            {
+                //while (true)
+                //{
+                int randomIndex = UnityEngine.Random.Range(0, optionEventList.Length);
+
+                OptionEvent assignedOptionEvent = optionEventList[randomIndex];
+                //    Debug.Log(GameManager.Instance.TrackEventOptions(null));
+                //    if (!GameManager.Instance.TrackEventOptions(null).Contains(assignedOptionEvent.optionName))
+                //    {
+                //GameManager.Instance.TrackEventOptions(assignedOptionEvent.optionName);
+                return assignedOptionEvent;
+                //}
+                //    else
+                //    {
+                //        continue;
+                //    };
+                //}
+            }
+            else
+            {
+                return null;
+
+            }
+        }
     }
 }

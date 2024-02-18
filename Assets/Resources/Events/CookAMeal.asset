@@ -46,4 +46,4 @@ MonoBehaviour:
   dialog:
   - Looks like a good meal is cooked
   - Oh my... Perhaps I will starve for awhile.....
-  eventOutCome: 1
+  eventOutCome: 0

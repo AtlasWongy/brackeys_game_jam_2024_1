@@ -45,3 +45,5 @@ MonoBehaviour:
   runTimeAnimatorController: {fileID: 9100000, guid: 3d9ecd19a4085ca4d92cc7562107e436, type: 2}
   animationSpeed: 1
   loop: 1
+  dialog: []
+  eventOutCome: 0

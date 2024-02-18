@@ -1555,7 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: e618f160b85203a49bf1d4706b2902f0, type: 2}
-  optionEventFolder: Events/Combat
+  optionEventFolder: Events
   eventButton: {fileID: 732800808}
 --- !u!114 &732800808
 MonoBehaviour:
@@ -2967,7 +2967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: 4938c4ee132860845a224e1c5293891b, type: 2}
-  optionEventFolder: Events/Encounter
+  optionEventFolder: Events
   eventButton: {fileID: 1643502959}
 --- !u!114 &1643502959
 MonoBehaviour:
@@ -3317,7 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: e19e6e7a509ff1a4b8ca4caddd34630b, type: 2}
-  optionEventFolder: Events/Merchant
+  optionEventFolder: Events
   eventButton: {fileID: 1772449309}
 --- !u!114 &1772449309
 MonoBehaviour:
