@@ -45,7 +45,6 @@ public class GameManager : MonoBehaviour
 
     private int DoorCounter = 0;
 
-    private List<string> OptionsSelected;
     private void Awake()
     {
         // Singleton pattern implementation.
@@ -67,12 +66,10 @@ public class GameManager : MonoBehaviour
     {
         //UpdateUIStatText();
         PrincessStartGenerate();
-        OptionsSelected = new List<string>;
     }
 
     public void HandleEventOutcome(OptionEvent optionEvent)
     {
-        OptionsSelected.Add(optionEvent.optionName);
         // Modify player stats based on event outcome
         Debug.LogFormat("Option Selected: {0}. Change in stats: {1} health, {2} wits, {3} guts, {4} heart, {5} good, {6} evil. You gained: {7} gold and {8} items.", optionEvent.optionName, optionEvent.stats.Health, optionEvent.stats.Wits, optionEvent.stats.Guts, optionEvent.stats.Heart, optionEvent.stats.Good, optionEvent.stats.Evil, optionEvent.rewardsObtained.Item2, optionEvent.rewardsObtained.Item1);
 
@@ -82,9 +79,18 @@ public class GameManager : MonoBehaviour
         UpdateUIStatText();
 
         DoorCounter += 1;
-        if (DoorCounter == 1)
+        if (DoorCounter == 1) //NUMBER OF DOORS IN THE GAME
         {
-            PrincessEndCheck();
+            if(PrincessEndCheck()){
+                Debug.Log("The Princess accepts you! You win.");
+            }
+            else{
+            Debug.Log("The Princess rejected you! Game over.");
+            }
+        }
+
+        if(PlayerClass.PlayerInstance.GetStats().Health <= 0){
+            Debug.Log("You died! Game over.")
         }
 
         // Check win condition
@@ -93,6 +99,7 @@ public class GameManager : MonoBehaviour
         //    Debug.Log("You Won! Game over.");
         //}
     }
+
 
     public void PrincessStartGenerate()
     {
@@ -107,7 +114,7 @@ public class GameManager : MonoBehaviour
 
     }
 
-    public void PrincessEndCheck()
+    public bool PrincessEndCheck()
     {
         DemandsMet = 0;
         //need 2 out of 3 right to win the game
@@ -231,6 +238,5 @@ public class GameManager : MonoBehaviour
     public bool ResolvePlayerRoll(OptionEvent optionEvent)
     {
         return (PlayerClass.PlayerInstance.DieRoll(optionEvent));
-        //return true;
     }
 }
