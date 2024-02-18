@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1555,6 +1555,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: e618f160b85203a49bf1d4706b2902f0, type: 2}
+  optionEventFolder: Events
   eventButton: {fileID: 732800808}
 --- !u!114 &732800808
 MonoBehaviour:
@@ -2966,6 +2967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: 4938c4ee132860845a224e1c5293891b, type: 2}
+  optionEventFolder: Events
   eventButton: {fileID: 1643502959}
 --- !u!114 &1643502959
 MonoBehaviour:
@@ -3315,6 +3317,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   optionEvent: {fileID: 11400000, guid: e19e6e7a509ff1a4b8ca4caddd34630b, type: 2}
+  optionEventFolder: Events
   eventButton: {fileID: 1772449309}
 --- !u!114 &1772449309
 MonoBehaviour:
@@ -3564,10 +3567,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerPrefab: {fileID: -2280893784269672642, guid: 54c304c8d54f3ab4cb3a17724bed9da7, type: 3}
   enemyPrefab: {fileID: 1180266945492417491, guid: 4c4ec57ddeaf1074e9d0e85fbc701b7d, type: 3}
+  npcPrefab: {fileID: 0}
+  merchantPrefab: {fileID: 0}
+  dialogPrompt: {fileID: 0}
   buttons:
   - {fileID: 732800808}
   - {fileID: 1643502959}
   - {fileID: 1772449309}
+  playerWinsEncounter: 0
+  _optionEvent: {fileID: 0}
 --- !u!1 &1876305060
 GameObject:
   m_ObjectHideFlags: 0

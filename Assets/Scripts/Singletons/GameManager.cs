@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using NPC;
 using Options;
 using Player;
@@ -60,7 +61,12 @@ namespace Singletons
         private string _eventType;
         private NpcInteraction _npc;
         private Merchant.Merchant _merchant;
-    
+        private Enemy.Enemy enemy;
+
+        private List<string> UsedEventNames = new List<string>();
+        private OptionEvent[] optionEventList;
+        public string optionEventFolder;
+
         private void Awake()
         {
             if (Instance == null)
@@ -75,6 +81,7 @@ namespace Singletons
             DontDestroyOnLoad(gameObject);
 
             PrincessStartGenerate();
+            optionEventList = Resources.LoadAll<OptionEvent>(optionEventFolder);
 
         }
 
@@ -99,6 +106,7 @@ namespace Singletons
                     }
                 }
             }
+
         }
 
         public void PrincessStartGenerate()
@@ -203,7 +211,7 @@ namespace Singletons
         {
             if (SceneManager.GetActiveScene().buildIndex == 1)
             {
-                Enemy.Enemy enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
+                enemy = Instantiate(enemyPrefab, new Vector3(0.038f, 0.77f), Quaternion.identity);
                 enemy.GetComponent<SpriteRenderer>().sprite = _optionEvent.sprite;
                 enemy.GetComponent<Animator>().runtimeAnimatorController = _optionEvent.runTimeAnimatorController;
                 enemy.GetComponent<Animator>().Play("Goblin_Idle");
@@ -332,7 +340,55 @@ namespace Singletons
             Instance.UpdateUIStatText();
             OnDestroySignal.Invoke();
         }
-    
+
+
+        public List<string> TrackEventOptions(String eventName)
+        {
+            if (eventName != null)
+            {
+                UsedEventNames.Add(eventName);
+            }
+            
+            return UsedEventNames;
+        }
+
+        public void LoadEvent(Button eventButton, OptionEvent optionEvent, TextMeshProUGUI _eventDesc)
+        {
+            eventButton.GetComponent<EventDisplay>().optionEvent = getOptionEvent();
+
+            _eventDesc = eventButton.GetComponentInChildren<TextMeshProUGUI>();
+
+            _eventDesc.text = optionEvent.description;
+        }
+
+        private OptionEvent getOptionEvent()
+        {
+            Debug.Log(optionEventList.Length);
+            if (optionEventList.Length > 0)
+            {
+                //while (true)
+                //{
+                int randomIndex = UnityEngine.Random.Range(0, optionEventList.Length);
+
+                OptionEvent assignedOptionEvent = optionEventList[randomIndex];
+                //    Debug.Log(GameManager.Instance.TrackEventOptions(null));
+                //    if (!GameManager.Instance.TrackEventOptions(null).Contains(assignedOptionEvent.optionName))
+                //    {
+                //GameManager.Instance.TrackEventOptions(assignedOptionEvent.optionName);
+                return assignedOptionEvent;
+                //}
+                //    else
+                //    {
+                //        continue;
+                //    };
+                //}
+            }
+            else
+            {
+                return null;
+
+            }
+        }
     }
 }
 
