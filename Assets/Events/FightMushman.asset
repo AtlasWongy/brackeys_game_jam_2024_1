@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: FightMushman
+  m_EditorClassIdentifier: 
+  optionName: Fight Mushman
+  eventType: Combat
+  description: These mushrooms.. don't seem edible.....
+  stats:
+    Health: 0
+    Wits: 2
+    Guts: 2
+    Heart: 0
+    Good: 1
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 2
+    Guts: 2
+    Heart: 0
+    Good: 1
+    Evil: 0
+  - Health: -2
+    Wits: -1
+    Guts: 0
+    Heart: -2
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 7de24e88d00aa75498381d762167ab40, type: 2}
+  - {fileID: 11400000, guid: 7a8bd6cf5991f4843bb4def918832ddd, type: 2}
+  sprite: {fileID: 1392206119, guid: 601a4d538fd01dc488ad81a8cd3cb152, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: 4cdcc7a81af55bf4d8fa642f2cee4daa, type: 2}
+  - {fileID: 7400000, guid: 8a003e8eddf78bf4b90fff115cf83b6d, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: 856390e60df9963439a9c2dbbf38f571, type: 2}
+  animationSpeed: 0
+  loop: 1
+  dialog: []
+  eventOutCome: 0

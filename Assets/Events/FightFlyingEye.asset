@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: FightFlyingEye
+  m_EditorClassIdentifier: 
+  optionName: Fight Flying Eye
+  eventType: Combat
+  description: Eyes everywhere..... The insecurities fuel your bloodlust
+  stats:
+    Health: 0
+    Wits: 2
+    Guts: 0
+    Heart: 1
+    Good: 0
+    Evil: -1
+  statList:
+  - Health: 0
+    Wits: 2
+    Guts: 0
+    Heart: 1
+    Good: 0
+    Evil: -1
+  - Health: -2
+    Wits: 0
+    Guts: 1
+    Heart: -1
+    Good: 1
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 9bdcc14dcaadc0f46bc7dd8c638d70e6, type: 2}
+  - {fileID: 11400000, guid: e74ac01eedab05a44b3459eb240e6507, type: 2}
+  sprite: {fileID: 548453699, guid: f3cdea588b7bc1e408b16c74a07c4364, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: eb4ce8e5387f5bb46bd5c083dd7770c2, type: 2}
+  - {fileID: 7400000, guid: 503d78558dda26047b3baecaa8a2506d, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: 8ad8501c6bf189a41abb2930fddc0fbc, type: 2}
+  animationSpeed: 0
+  loop: 1
+  dialog: []
+  eventOutCome: 0

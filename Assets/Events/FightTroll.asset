@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: FightTroll
+  m_EditorClassIdentifier: 
+  optionName: Fight Troll
+  eventType: Combat
+  description: The smell... oh my the smell
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 1
+    Guts: 0
+    Heart: 2
+    Good: 1
+    Evil: 0
+  - Health: -3
+    Wits: 0
+    Guts: 1
+    Heart: 0
+    Good: -1
+    Evil: 3
+  rewardList:
+  - {fileID: 11400000, guid: 95ada6b1e03373641980afc798b2c2c9, type: 2}
+  - {fileID: 11400000, guid: b08e0a29b64fb4a4abb60b3303db04bb, type: 2}
+  sprite: {fileID: -1379953047, guid: 601fce6b28f1f1b41a2c052e3dbf5505, type: 3}
+  animationClipList:
+  - {fileID: 7400000, guid: cddb328e0a35e404fac5897b1fdd517a, type: 2}
+  - {fileID: 7400000, guid: 96a5e08bd24ccc64aaeafac363ef14a4, type: 2}
+  runTimeAnimatorController: {fileID: 9100000, guid: aa9b7586b229bb249b975d90c01c28d1, type: 2}
+  animationSpeed: 0
+  loop: 1
+  dialog: []
+  eventOutCome: 0
