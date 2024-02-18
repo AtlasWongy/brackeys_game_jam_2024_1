@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bae82e18ff432ff47b364c8cca7e0524, type: 3}
+  m_Name: VisitMysteryShop
+  m_EditorClassIdentifier: 
+  optionName: Visit Mystery Shop
+  eventType: Shop
+  description: I hear a crowd... but there is no one in sight
+  stats:
+    Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  statList:
+  - Health: 0
+    Wits: 2
+    Guts: 3
+    Heart: 3
+    Good: 0
+    Evil: 0
+  - Health: 0
+    Wits: 0
+    Guts: 0
+    Heart: 0
+    Good: 0
+    Evil: 0
+  rewardList:
+  - {fileID: 11400000, guid: 740e433ed555fc44cb227d075baf8614, type: 2}
+  - {fileID: 11400000, guid: 156129c5a790292418f07c417a3f6319, type: 2}
+  sprite: {fileID: 21300000, guid: 4b4a0cb1405231f49a9c4737659223b5, type: 3}
+  animationClipList: []
+  runTimeAnimatorController: {fileID: 0}
+  animationSpeed: 0
+  loop: 1
+  dialog:
+  - 'Hey..... we have some really good stuff here '
+  - GET OUT! We are close
+  eventOutCome: 1
